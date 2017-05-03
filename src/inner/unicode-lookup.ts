@@ -1,4 +1,5 @@
 /**
+ * @module char-info/inner
  * @external
  */ /** */
 import DataIntervalTree, {Interval} from "node-interval-tree";
@@ -10,7 +11,7 @@ export interface UnicodeCharGroup {
     displayName : string;
 }
 
-interface UnicodeLookup {
+export interface UnicodeLookup {
     allBlocks : DataIntervalTree<UnicodeCharGroup>;
     allCategories : DataIntervalTree<UnicodeCharGroup>;
     allScripts : DataIntervalTree<UnicodeCharGroup>;

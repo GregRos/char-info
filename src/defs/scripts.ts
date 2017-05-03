@@ -1,6 +1,5 @@
-/**
- * Created by lifeg on 5/2/2017.
- */
+/** @module char-info/defs
+ * */ /** */
 export module UnicodeScript {
     export const Arabic = "Arabic";
     export const Armenian = "Armenian";

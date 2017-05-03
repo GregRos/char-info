@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Created by lifeg on 5/2/2017.
- */
+/** @module char-info/defs
+ * */ /** */
 var UnicodeCategory;
 (function (UnicodeCategory) {
     UnicodeCategory.Letter = "L";

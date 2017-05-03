@@ -37,7 +37,7 @@ gulp.task('typedoc', function () {
         out: "./docs",
         module: "commonjs",
         // TypeDoc options (see typedoc docs)
-        name: "parjs",
+        name: "char-info",
         ignoreCompilerErrors: true,
         version: true,
         mode: "modules",

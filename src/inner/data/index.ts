@@ -1,5 +1,6 @@
 /**
  * @external
+ * @module char-info/inner/data
  */ /** */
 import _blocks = require('./block.ranges');
 import _cats = require('./category.ranges');

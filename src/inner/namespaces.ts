@@ -32,10 +32,7 @@ module Codes {
    export const underscore = "_".charCodeAt(0);
 }
 
-/**
- * Provides factory methods for constructing objects that can check if a codepoint is in a unicode group.
- */
-export const Indicators : StaticIndicators = new (class IndicatorsImpl implements StaticIndicators {
+class IndicatorsImpl implements StaticIndicators {
 
     category(category : string) : CharClassIndicator {
         category = homogenizeInputStr(category);
@@ -57,15 +54,16 @@ export const Indicators : StaticIndicators = new (class IndicatorsImpl implement
         let uGroup = lookupLoader.lookup.blocks.get(block);
         return new BasicCharClassIndicator(uGroup);
     }
-})();
+}
+
+/**
+ * Provides factory methods for constructing objects that can check if a codepoint is in a unicode group.
+ */
+export const Indicators : StaticIndicators = new IndicatorsImpl();
 
 const categoryGroupWordChars = [UnicodeCategory.Letter, UnicodeCategory.NumberDecimalDigit, UnicodeCategory.PunctuationConnector, UnicodeCategory.PunctuationDash];
 
-
-/**
- * Provides methods for determining if a character codepoint has specific properties.
- */
-export const CodeInfo  = new (class CodeInfoImpl implements StaticCodeInfo{
+class CodeInfoImpl implements StaticCodeInfo{
 
     getScripts(code : number) : UnicodeCharGroup[] {
         return lookupLoader.lookup.allScripts.search(code, code);
@@ -165,12 +163,13 @@ export const CodeInfo  = new (class CodeInfoImpl implements StaticCodeInfo{
     inScript(code : number, script : string) {
         return Indicators.script(script).test(code);
     }
-})() as StaticCodeInfo;
-
+}
 /**
- * Provides methods for determining if a character has specific properties.
+ * Provides methods for determining if a character codepoint has specific properties.
  */
-export const CharInfo  = new (class CharInfoImpl implements StaticCharInfo{
+export const CodeInfo  = new CodeInfoImpl() as StaticCodeInfo;
+
+class CharInfoImpl implements StaticCharInfo{
     getScripts(code : string) : UnicodeCharGroup[] {
         return CodeInfo.getScripts(code.charCodeAt(0));
     }
@@ -265,4 +264,8 @@ export const CharInfo  = new (class CharInfoImpl implements StaticCharInfo{
     inScript(code : string, script : string) {
         return CodeInfo.inScript(code, script);
     }
-})() as StaticCharInfo;
+}
+/**
+ * Provides methods for determining if a character has specific properties.
+ */
+export const CharInfo  = new CharInfoImpl() as StaticCharInfo;

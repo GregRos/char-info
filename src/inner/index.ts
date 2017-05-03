@@ -1,5 +1,4 @@
 /**
- * Created by lifeg on 5/3/2017.
- */
-
+ * @module char-info/inner
+ */ /** */
 export {BasicCharClassIndicator} from './indicators';

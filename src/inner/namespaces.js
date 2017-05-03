@@ -31,10 +31,7 @@ var Codes;
     Codes.E = Codes.A + 4;
     Codes.underscore = "_".charCodeAt(0);
 })(Codes || (Codes = {}));
-/**
- * Provides factory methods for constructing objects that can check if a codepoint is in a unicode group.
- */
-exports.Indicators = new ((function () {
+var IndicatorsImpl = (function () {
     function IndicatorsImpl() {
     }
     IndicatorsImpl.prototype.category = function (category) {
@@ -56,12 +53,13 @@ exports.Indicators = new ((function () {
         return new indicators_1.BasicCharClassIndicator(uGroup);
     };
     return IndicatorsImpl;
-}()))();
-var categoryGroupWordChars = [categories_1.UnicodeCategory.Letter, categories_1.UnicodeCategory.NumberDecimalDigit, categories_1.UnicodeCategory.PunctuationConnector, categories_1.UnicodeCategory.PunctuationDash];
+}());
 /**
- * Provides methods for determining if a character codepoint has specific properties.
+ * Provides factory methods for constructing objects that can check if a codepoint is in a unicode group.
  */
-exports.CodeInfo = new ((function () {
+exports.Indicators = new IndicatorsImpl();
+var categoryGroupWordChars = [categories_1.UnicodeCategory.Letter, categories_1.UnicodeCategory.NumberDecimalDigit, categories_1.UnicodeCategory.PunctuationConnector, categories_1.UnicodeCategory.PunctuationDash];
+var CodeInfoImpl = (function () {
     function CodeInfoImpl() {
     }
     CodeInfoImpl.prototype.getScripts = function (code) {
@@ -141,11 +139,12 @@ exports.CodeInfo = new ((function () {
         return exports.Indicators.script(script).test(code);
     };
     return CodeInfoImpl;
-}()))();
+}());
 /**
- * Provides methods for determining if a character has specific properties.
+ * Provides methods for determining if a character codepoint has specific properties.
  */
-exports.CharInfo = new ((function () {
+exports.CodeInfo = new CodeInfoImpl();
+var CharInfoImpl = (function () {
     function CharInfoImpl() {
     }
     CharInfoImpl.prototype.getScripts = function (code) {
@@ -221,5 +220,9 @@ exports.CharInfo = new ((function () {
         return exports.CodeInfo.inScript(code, script);
     };
     return CharInfoImpl;
-}()))();
+}());
+/**
+ * Provides methods for determining if a character has specific properties.
+ */
+exports.CharInfo = new CharInfoImpl();
 //# sourceMappingURL=namespaces.js.map

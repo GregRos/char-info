@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
+ * @module char-info/inner
  * @external
  */ /** */
 var node_interval_tree_1 = require("node-interval-tree");

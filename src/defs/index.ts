@@ -1,6 +1,5 @@
-/**
- * Created by lifeg on 5/3/2017.
- */
+/** @module char-info/defs
+ * */ /** */
 export {UnicodeBlock} from './blocks';
 export {UnicodeCategory} from './categories';
 export {UnicodeScript} from './scripts';

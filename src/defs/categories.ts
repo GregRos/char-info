@@ -1,6 +1,5 @@
-/**
- * Created by lifeg on 5/2/2017.
- */
+/** @module char-info/defs
+ * */ /** */
 export namespace UnicodeCategory {
     export const Letter = "L";
     export const LetterUppercase = "Lu";
