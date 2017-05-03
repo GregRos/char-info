@@ -270,8 +270,8 @@ export = [
         [
             [
                 "_Zv",
-                "Custom_SpaceVertical"
+                "Custom_VerticalSeparator"
             ],
-            "\u000A-\u000D\u0085\u2028\u2029"
+            "\\x0A-\\x0D\\x85\\u2028-\\u2029"
         ]
     ];

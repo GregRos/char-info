@@ -25,7 +25,7 @@ function homogenizeRawStr(str : string) {
     return str.toLowerCase().replace(/_/g, "");
 }
 
-const rangeRegex = /(\\\w[1-6a-fA-F]+|.)(?:-(\\\w[1-6a-fA-F]+|.))?/g;
+const rangeRegex = /(\\\w[0-9a-fA-F]+|[\s\S])(?:-(\\\w[0-9a-fA-F]+|[\s\S]))?/g;
 
 function getCharCode(str : string) {
     if (str.length === 1) {

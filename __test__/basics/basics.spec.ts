@@ -36,6 +36,10 @@ describe("basics", () => {
             expect(CharInfo.inScript(char, UnicodeScript.Common));
             expect(CharInfo.getScripts(char).find(x => x.name === UnicodeScript.Common));
         });
-
+    });
+    describe("newline", () => {
+        it("works", () => {
+            expect(CharInfo.isUniNewline("\u2028")).toBe(true);
+        })
     })
 });
