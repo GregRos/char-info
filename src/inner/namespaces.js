@@ -211,13 +211,13 @@ var CharInfoImpl = (function () {
         return exports.CodeInfo.isWordChar(code.charCodeAt(0));
     };
     CharInfoImpl.prototype.inBlock = function (code, block) {
-        return exports.CodeInfo.inBlock(code, block);
+        return exports.CodeInfo.inBlock(code.charCodeAt(0), block);
     };
     CharInfoImpl.prototype.inCategory = function (code, block) {
-        return exports.CodeInfo.inCategory(code, block);
+        return exports.CodeInfo.inCategory(code.charCodeAt(0), block);
     };
     CharInfoImpl.prototype.inScript = function (code, script) {
-        return exports.CodeInfo.inScript(code, script);
+        return exports.CodeInfo.inScript(code.charCodeAt(0), script);
     };
     return CharInfoImpl;
 }());

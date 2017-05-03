@@ -167,7 +167,7 @@ class CodeInfoImpl implements StaticCodeInfo{
 /**
  * Provides methods for determining if a character codepoint has specific properties.
  */
-export const CodeInfo  = new CodeInfoImpl() as StaticCodeInfo;
+export const CodeInfo : StaticCodeInfo  = new CodeInfoImpl() as StaticCodeInfo;
 
 class CharInfoImpl implements StaticCharInfo{
     getScripts(code : string) : UnicodeCharGroup[] {
@@ -254,18 +254,18 @@ class CharInfoImpl implements StaticCharInfo{
     }
 
     inBlock(code : string, block : string) {
-        return CodeInfo.inBlock(code, block);
+        return CodeInfo.inBlock(code.charCodeAt(0), block);
     }
 
     inCategory(code : string, block : string) {
-        return CodeInfo.inCategory(code, block);
+        return CodeInfo.inCategory(code.charCodeAt(0), block);
     }
 
     inScript(code : string, script : string) {
-        return CodeInfo.inScript(code, script);
+        return CodeInfo.inScript(code.charCodeAt(0), script);
     }
 }
 /**
  * Provides methods for determining if a character has specific properties.
  */
-export const CharInfo  = new CharInfoImpl() as StaticCharInfo;
+export const CharInfo : StaticCharInfo  = new CharInfoImpl() as StaticCharInfo;
