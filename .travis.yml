@@ -1,0 +1,15 @@
+language: node_js
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
+install:
+  - npm install --save-dev
+  - npm install -g npm-run
+script:
+  - npm-run istanbul cover ./jrunner.js --report lcovonly -- -R spec
+  - npm-run codecov
+node_js:
+  - "6.1"

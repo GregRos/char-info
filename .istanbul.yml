@@ -1,0 +1,10 @@
+instrumentation:
+  root: .
+  extensions:
+    - .js
+  default-excludes: true
+  excludes:
+    - "**/*.no-cover.js"
+    - "**/__test__/**" #no need to instrument this test code! Things references by it remain covered.
+    - "**/data/**" #don't check data definitions
+    - "**/defs/**" #don't check unicode group name definitions

@@ -1,0 +1,60 @@
+{
+  "name": "char-info",
+  "version": "0.1.0",
+  "repository": "https://github.com/GregRos/char-info",
+  "homepage": "https://github.com/GregRos/char-info",
+  "typings": "dist/index",
+  "description": "Unicode character information library. Usable from both server- and client-side",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "node ./jrunner.js",
+    "cover": "npm-run istanbul cover jrunner.js"
+  },
+  "directories": {
+    "bin": "dist",
+    "test": "__tests__",
+    "lib": "dist",
+    "example": "examples"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "__test__/",
+    "examples"
+  ],
+  "keywords": [
+    "text",
+    "string",
+    "character",
+    "parser",
+    "indicator",
+    "isUpper",
+    "isLower",
+    "unicode"
+  ],
+  "author": "Greg Rosenbaum",
+  "license": "MIT",
+  "dependencies": {
+    "node-interval-tree": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.5.37",
+    "codecov": "^2.1.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^1.11.0",
+    "gulp-typedoc": "^2.0.2",
+    "gulp-typescript": "^3.1.4",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.2",
+    "jasmine-spec-reporter": "^2.7.0",
+    "lodash": "^4.17.4",
+    "merge2": "^1.0.3",
+    "source-map-support": "^0.4.14",
+    "typedoc": "^0.5.10",
+    "typedoc-plugin-external-module-name": "^1.0.9",
+    "typedoc-plugin-internal-external": "^1.0.9",
+    "typescript": "^2.2.2"
+  },
+  "optionalDependencies": {}
+}
