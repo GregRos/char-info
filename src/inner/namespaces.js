@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @module char-info
  */ /** */
-const unicode_lookup_1 = require("./unicode-lookup");
-const categories_1 = require("../defs/categories");
-const indicators_1 = require("./indicators");
+var unicode_lookup_1 = require("./unicode-lookup");
+var categories_1 = require("../defs/categories");
+var indicators_1 = require("./indicators");
 function homogenizeInputStr(str) {
     return str.toLowerCase().replace(/[_ -,]/g, "");
 }
@@ -31,187 +31,196 @@ var Codes;
     Codes.E = Codes.A + 4;
     Codes.underscore = "_".charCodeAt(0);
 })(Codes || (Codes = {}));
-class IndicatorsImpl {
-    category(category) {
+var IndicatorsImpl = (function () {
+    function IndicatorsImpl() {
+    }
+    IndicatorsImpl.prototype.category = function (category) {
         category = homogenizeInputStr(category);
         if (category.length > 3) {
             category = unicode_lookup_1.lookupLoader.lookup.longCategoryToCode.get(category);
         }
-        let uGroup = unicode_lookup_1.lookupLoader.lookup.categories.get(category);
+        var uGroup = unicode_lookup_1.lookupLoader.lookup.categories.get(category);
         return new indicators_1.BasicCharClassIndicator(uGroup);
-    }
-    script(script) {
+    };
+    IndicatorsImpl.prototype.script = function (script) {
         script = homogenizeInputStr(script);
-        let uGroup = unicode_lookup_1.lookupLoader.lookup.scripts.get(script);
+        var uGroup = unicode_lookup_1.lookupLoader.lookup.scripts.get(script);
         return new indicators_1.BasicCharClassIndicator(uGroup);
-    }
-    block(block) {
+    };
+    IndicatorsImpl.prototype.block = function (block) {
         block = homogenizeInputStr(block);
-        let uGroup = unicode_lookup_1.lookupLoader.lookup.blocks.get(block);
+        var uGroup = unicode_lookup_1.lookupLoader.lookup.blocks.get(block);
         return new indicators_1.BasicCharClassIndicator(uGroup);
-    }
-}
+    };
+    return IndicatorsImpl;
+}());
 /**
  * Provides factory methods for constructing objects that can check if a codepoint is in a unicode group.
  */
 exports.Indicators = new IndicatorsImpl();
-const categoryGroupWordChars = [categories_1.UnicodeCategory.Letter, categories_1.UnicodeCategory.NumberDecimalDigit, categories_1.UnicodeCategory.PunctuationConnector, categories_1.UnicodeCategory.PunctuationDash];
-class CodeInfoImpl {
-    getScripts(code) {
+var categoryGroupWordChars = [categories_1.UnicodeCategory.Letter, categories_1.UnicodeCategory.NumberDecimalDigit, categories_1.UnicodeCategory.PunctuationConnector, categories_1.UnicodeCategory.PunctuationDash];
+var CodeInfoImpl = (function () {
+    function CodeInfoImpl() {
+    }
+    CodeInfoImpl.prototype.getScripts = function (code) {
         return unicode_lookup_1.lookupLoader.lookup.allScripts.search(code, code);
-    }
-    getCategories(code) {
+    };
+    CodeInfoImpl.prototype.getCategories = function (code) {
         return unicode_lookup_1.lookupLoader.lookup.allCategories.search(code, code);
-    }
-    isAscii(code) {
+    };
+    CodeInfoImpl.prototype.isAscii = function (code) {
         return code >= 0 && code <= Codes.maxAnsi;
-    }
-    getBlock(code) {
+    };
+    CodeInfoImpl.prototype.getBlock = function (code) {
         return unicode_lookup_1.lookupLoader.lookup.allBlocks.search(code, code)[0];
-    }
-    isHex(code) {
+    };
+    CodeInfoImpl.prototype.isHex = function (code) {
         return code >= Codes.A && code <= Codes.F || code >= Codes.a && code <= Codes.f || code >= Codes.zero && code <= Codes.nine;
-    }
-    isDecimal(code) {
+    };
+    CodeInfoImpl.prototype.isDecimal = function (code) {
         return code >= Codes.zero && code <= Codes.nine;
-    }
-    isLetter(code) {
+    };
+    CodeInfoImpl.prototype.isLetter = function (code) {
         return code >= Codes.a && code <= Codes.z || code >= Codes.A && code <= Codes.Z;
-    }
-    isUpper(code) {
+    };
+    CodeInfoImpl.prototype.isUpper = function (code) {
         return code >= Codes.A && code <= Codes.Z;
-    }
-    isLower(code) {
+    };
+    CodeInfoImpl.prototype.isLower = function (code) {
         return code >= Codes.a && code <= Codes.z;
-    }
-    isNewline(code) {
+    };
+    CodeInfoImpl.prototype.isNewline = function (code) {
         return code === Codes.carriageReturn || code === Codes.newline;
-    }
-    isSpace(code) {
+    };
+    CodeInfoImpl.prototype.isSpace = function (code) {
         return code === Codes.space || code === Codes.tab;
-    }
-    isBinary(code) {
+    };
+    CodeInfoImpl.prototype.isBinary = function (code) {
         return code === Codes.zero || code === Codes.zero + 1;
-    }
-    isUniDecimal(code) {
+    };
+    CodeInfoImpl.prototype.isUniDecimal = function (code) {
         return exports.Indicators.category(categories_1.UnicodeCategory.NumberDecimalDigit).test(code);
-    }
-    isUniLetter(code) {
+    };
+    CodeInfoImpl.prototype.isUniLetter = function (code) {
         return exports.Indicators.category(categories_1.UnicodeCategory.Letter).test(code);
-    }
-    isUniLower(code) {
+    };
+    CodeInfoImpl.prototype.isUniLower = function (code) {
         return exports.Indicators.category(categories_1.UnicodeCategory.LetterLowercase).test(code);
-    }
-    isUniUpper(code) {
+    };
+    CodeInfoImpl.prototype.isUniUpper = function (code) {
         return exports.Indicators.category(categories_1.UnicodeCategory.LetterUppercase).test(code);
-    }
-    isUniLetterModifier(code) {
+    };
+    CodeInfoImpl.prototype.isUniLetterModifier = function (code) {
         return exports.Indicators.category(categories_1.UnicodeCategory.LetterModifier).test(code);
-    }
-    isUniSpace(code) {
+    };
+    CodeInfoImpl.prototype.isUniSpace = function (code) {
         return exports.Indicators.category(categories_1.UnicodeCategory.SeparatorSpace).test(code);
-    }
-    isUniNewline(code) {
+    };
+    CodeInfoImpl.prototype.isUniNewline = function (code) {
         return exports.Indicators.category(categories_1.UnicodeCategory.Custom_SeparatorVertical).test(code);
-    }
-    isUniWordChar(code) {
-        return !!exports.CodeInfo.getCategories(code).find(cat => categoryGroupWordChars.includes(cat.name));
-    }
-    isWordChar(code) {
+    };
+    CodeInfoImpl.prototype.isUniWordChar = function (code) {
+        return !!exports.CodeInfo.getCategories(code).find(function (cat) { return categoryGroupWordChars.includes(cat.name); });
+    };
+    CodeInfoImpl.prototype.isWordChar = function (code) {
         return code >= Codes.A && code <= Codes.Z
             || code >= Codes.zero && code <= Codes.nine
             || code >= Codes.a && code <= Codes.z
             || code === Codes.underscore
             || code === Codes.minus;
-    }
-    inBlock(code, block) {
+    };
+    CodeInfoImpl.prototype.inBlock = function (code, block) {
         return exports.Indicators.block(block).test(code);
-    }
-    inCategory(code, block) {
+    };
+    CodeInfoImpl.prototype.inCategory = function (code, block) {
         return exports.Indicators.category(block).test(code);
-    }
-    inScript(code, script) {
+    };
+    CodeInfoImpl.prototype.inScript = function (code, script) {
         return exports.Indicators.script(script).test(code);
-    }
-}
+    };
+    return CodeInfoImpl;
+}());
 /**
  * Provides methods for determining if a character codepoint has specific properties.
  */
 exports.CodeInfo = new CodeInfoImpl();
-class CharInfoImpl {
-    getScripts(code) {
+var CharInfoImpl = (function () {
+    function CharInfoImpl() {
+    }
+    CharInfoImpl.prototype.getScripts = function (code) {
         return exports.CodeInfo.getScripts(code.charCodeAt(0));
-    }
-    getCategories(code) {
+    };
+    CharInfoImpl.prototype.getCategories = function (code) {
         return exports.CodeInfo.getCategories(code.charCodeAt(0));
-    }
-    isAscii(code) {
+    };
+    CharInfoImpl.prototype.isAscii = function (code) {
         return exports.CodeInfo.isAscii(code.charCodeAt(0));
-    }
-    getBlock(code) {
+    };
+    CharInfoImpl.prototype.getBlock = function (code) {
         return exports.CodeInfo.getBlock(code.charCodeAt(0));
-    }
-    isHex(code) {
+    };
+    CharInfoImpl.prototype.isHex = function (code) {
         return exports.CodeInfo.isHex(code.charCodeAt(0));
-    }
-    isDecimal(code) {
+    };
+    CharInfoImpl.prototype.isDecimal = function (code) {
         return exports.CodeInfo.isDecimal(code.charCodeAt(0));
-    }
-    isLetter(code) {
+    };
+    CharInfoImpl.prototype.isLetter = function (code) {
         return exports.CodeInfo.isLetter(code.charCodeAt(0));
-    }
-    isUpper(code) {
+    };
+    CharInfoImpl.prototype.isUpper = function (code) {
         return exports.CodeInfo.isUpper(code.charCodeAt(0));
-    }
-    isLower(code) {
+    };
+    CharInfoImpl.prototype.isLower = function (code) {
         return exports.CodeInfo.isLower(code.charCodeAt(0));
-    }
-    isNewline(code) {
+    };
+    CharInfoImpl.prototype.isNewline = function (code) {
         return exports.CodeInfo.isNewline(code.charCodeAt(0));
-    }
-    isSpace(code) {
+    };
+    CharInfoImpl.prototype.isSpace = function (code) {
         return exports.CodeInfo.isSpace(code.charCodeAt(0));
-    }
-    isBinary(code) {
+    };
+    CharInfoImpl.prototype.isBinary = function (code) {
         return exports.CodeInfo.isBinary(code.charCodeAt(0));
-    }
-    isUniDecimal(code) {
+    };
+    CharInfoImpl.prototype.isUniDecimal = function (code) {
         return exports.CodeInfo.isUniDecimal(code.charCodeAt(0));
-    }
-    isUniLetter(code) {
+    };
+    CharInfoImpl.prototype.isUniLetter = function (code) {
         return exports.CodeInfo.isUniLetter(code.charCodeAt(0));
-    }
-    isUniLower(code) {
+    };
+    CharInfoImpl.prototype.isUniLower = function (code) {
         return exports.CodeInfo.isUniLower(code.charCodeAt(0));
-    }
-    isUniUpper(code) {
+    };
+    CharInfoImpl.prototype.isUniUpper = function (code) {
         return exports.CodeInfo.isUniUpper(code.charCodeAt(0));
-    }
-    isUniLetterModifier(code) {
+    };
+    CharInfoImpl.prototype.isUniLetterModifier = function (code) {
         return exports.CodeInfo.isUniLetterModifier(code.charCodeAt(0));
-    }
-    isUniSpace(code) {
+    };
+    CharInfoImpl.prototype.isUniSpace = function (code) {
         return exports.CodeInfo.isUniSpace(code.charCodeAt(0));
-    }
-    isUniNewline(code) {
+    };
+    CharInfoImpl.prototype.isUniNewline = function (code) {
         return exports.CodeInfo.isUniNewline(code.charCodeAt(0));
-    }
-    isUniWordChar(code) {
+    };
+    CharInfoImpl.prototype.isUniWordChar = function (code) {
         return exports.CodeInfo.isUniWordChar(code.charCodeAt(0));
-    }
-    isWordChar(code) {
+    };
+    CharInfoImpl.prototype.isWordChar = function (code) {
         return exports.CodeInfo.isWordChar(code.charCodeAt(0));
-    }
-    inBlock(code, block) {
+    };
+    CharInfoImpl.prototype.inBlock = function (code, block) {
         return exports.CodeInfo.inBlock(code.charCodeAt(0), block);
-    }
-    inCategory(code, block) {
+    };
+    CharInfoImpl.prototype.inCategory = function (code, block) {
         return exports.CodeInfo.inCategory(code.charCodeAt(0), block);
-    }
-    inScript(code, script) {
+    };
+    CharInfoImpl.prototype.inScript = function (code, script) {
         return exports.CodeInfo.inScript(code.charCodeAt(0), script);
-    }
-}
+    };
+    return CharInfoImpl;
+}());
 /**
  * Provides methods for determining if a character has specific properties.
  */

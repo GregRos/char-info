@@ -12,9 +12,8 @@
   },
   "directories": {
     "bin": "dist",
-    "test": "__tests__",
-    "lib": "dist",
-    "example": "examples"
+    "test": "__test__",
+    "lib": "dist"
   },
   "files": [
     "dist/",

@@ -4,41 +4,42 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @module char-info/inner
  * @external
  */ /** */
-const node_interval_tree_1 = require("node-interval-tree");
-const index_1 = require("./data/index");
+var node_interval_tree_1 = require("node-interval-tree");
+var index_1 = require("./data/index");
 function homogenizeRawStr(str) {
     return str.toLowerCase().replace(/_/g, "");
 }
-const rangeRegex = /(\\\w[0-9a-fA-F]+|[\s\S])(?:-(\\\w[0-9a-fA-F]+|[\s\S]))?/g;
+var rangeRegex = /(\\\w[0-9a-fA-F]+|[\s\S])(?:-(\\\w[0-9a-fA-F]+|[\s\S]))?/g;
 function getCharCode(str) {
     if (str.length === 1) {
         return str.charCodeAt(0);
     }
-    let hex = str.slice(2);
+    var hex = str.slice(2);
     return Number.parseInt(hex, 16);
 }
 function expandIntoRanges(compressedForm) {
-    let matches = [];
-    let x = null;
+    var matches = [];
+    var x = null;
     while (x = rangeRegex.exec(compressedForm)) {
         matches.push([x[1], x[2] || x[1]]);
     }
-    let ranges = [];
-    for (let match of matches) {
-        let start = getCharCode(match[0]);
-        let end = getCharCode(match[1]);
+    var ranges = [];
+    for (var _i = 0, matches_1 = matches; _i < matches_1.length; _i++) {
+        var match = matches_1[_i];
+        var start = getCharCode(match[0]);
+        var end = getCharCode(match[1]);
         ranges.push({
             low: start,
             high: end
         });
     }
-    ranges.sort((a, b) => a.low - b.low);
+    ranges.sort(function (a, b) { return a.low - b.low; });
     return ranges;
 }
 function expandRawRecord(raw) {
-    let name;
-    let alias;
-    let fst = raw[0];
+    var name;
+    var alias;
+    var fst = raw[0];
     if (fst.constructor === Array) {
         name = fst[0];
         alias = fst[1];
@@ -56,7 +57,7 @@ function expandRawRecord(raw) {
     };
 }
 function buildLookup() {
-    let lookup = {
+    var lookup = {
         allBlocks: new node_interval_tree_1.default(),
         allCategories: new node_interval_tree_1.default(),
         allScripts: new node_interval_tree_1.default(),
@@ -65,33 +66,39 @@ function buildLookup() {
         scripts: new Map(),
         longCategoryToCode: new Map()
     };
-    for (let rawBlock of index_1.rawData.blocks) {
-        let block = expandRawRecord(rawBlock);
+    for (var _i = 0, _a = index_1.rawData.blocks; _i < _a.length; _i++) {
+        var rawBlock = _a[_i];
+        var block = expandRawRecord(rawBlock);
         lookup.blocks.set(homogenizeRawStr(block.name), block);
-        for (let interval of block.intervals) {
+        for (var _b = 0, _c = block.intervals; _b < _c.length; _b++) {
+            var interval = _c[_b];
             lookup.allBlocks.insert(interval.low, interval.high, block);
         }
     }
-    for (let rawCategory of index_1.rawData.categories) {
-        let cat = expandRawRecord(rawCategory);
-        let hName = homogenizeRawStr(cat.name);
+    for (var _d = 0, _e = index_1.rawData.categories; _d < _e.length; _d++) {
+        var rawCategory = _e[_d];
+        var cat = expandRawRecord(rawCategory);
+        var hName = homogenizeRawStr(cat.name);
         lookup.categories.set(hName, cat);
         lookup.longCategoryToCode.set(homogenizeRawStr(cat.alias), hName);
-        for (let interval of cat.intervals) {
+        for (var _f = 0, _g = cat.intervals; _f < _g.length; _f++) {
+            var interval = _g[_f];
             lookup.allCategories.insert(interval.low, interval.high, cat);
         }
     }
-    for (let rawScript of index_1.rawData.scripts) {
-        let script = expandRawRecord(rawScript);
+    for (var _h = 0, _j = index_1.rawData.scripts; _h < _j.length; _h++) {
+        var rawScript = _j[_h];
+        var script = expandRawRecord(rawScript);
         lookup.scripts.set(homogenizeRawStr(script.name), script);
-        for (let interval of script.intervals) {
+        for (var _k = 0, _l = script.intervals; _k < _l.length; _k++) {
+            var interval = _l[_k];
             lookup.allScripts.insert(interval.low, interval.high, script);
         }
     }
     return lookup;
 }
 exports.lookupLoader = (function () {
-    let lookup;
+    var lookup;
     return {
         get lookup() {
             if (lookup)
