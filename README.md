@@ -1,4 +1,10 @@
 # char-info
+![Travic CI](https://travis-ci.org/GregRos/char-info.svg?branch=master)
+![Codecov](https://codecov.io/gh/GregRos/char-info/branch/master/graph/badge.svg)
+![NPM](https://badge.fury.io/js/char-info.svg)
+
+[API Documentation](https://gregros.github.io/char-info/)
+
 This is a library providing information about JavaScript Unicode characters. It's built with high performance in mind. Currently it only supports BMP (Basic Multilingual Plane) characters, which covers most common and uncommon symbols.
 
 Symbols outside of the BMP include some mathematical symbols, ancient scripts, additional emojis/ideograms, etc. These can only be represented using two or more characters in JavaScript which, when rendered as text, appear as a single symbol.
