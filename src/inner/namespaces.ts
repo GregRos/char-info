@@ -20,7 +20,7 @@ module Codes {
    export const zero = '0'.charCodeAt(0);
    export const nine = '9'.charCodeAt(0);
    export const newline = '\n'.charCodeAt(0);
-   export const maxAnsi = 0xff;
+   export const maxAscii = 0xff;
    export const carriageReturn = '\r'.charCodeAt(0);
    export const space = 0x0020;
    export const tab = 0x0008;
@@ -74,7 +74,7 @@ class CodeInfoImpl implements StaticCodeInfo{
     }
 
     isAscii(code : number) {
-        return code >= 0 && code <= Codes.maxAnsi;
+        return code >= 0 && code <= Codes.maxAscii;
     }
 
 

@@ -1,6 +1,6 @@
 {
   "name": "char-info",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "repository": "https://github.com/GregRos/char-info",
   "homepage": "https://github.com/GregRos/char-info",
   "typings": "dist/index",

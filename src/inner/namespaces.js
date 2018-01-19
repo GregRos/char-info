@@ -20,7 +20,7 @@ var Codes;
     Codes.zero = '0'.charCodeAt(0);
     Codes.nine = '9'.charCodeAt(0);
     Codes.newline = '\n'.charCodeAt(0);
-    Codes.maxAnsi = 0xff;
+    Codes.maxAscii = 0xff;
     Codes.carriageReturn = '\r'.charCodeAt(0);
     Codes.space = 0x0020;
     Codes.tab = 0x0008;
@@ -69,7 +69,7 @@ var CodeInfoImpl = (function () {
         return unicode_lookup_1.lookupLoader.lookup.allCategories.search(code, code);
     };
     CodeInfoImpl.prototype.isAscii = function (code) {
-        return code >= 0 && code <= Codes.maxAnsi;
+        return code >= 0 && code <= Codes.maxAscii;
     };
     CodeInfoImpl.prototype.getBlock = function (code) {
         return unicode_lookup_1.lookupLoader.lookup.allBlocks.search(code, code)[0];

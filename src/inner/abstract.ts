@@ -61,13 +61,13 @@ export interface StaticCodeInfo {
     isBinary(code : number) : boolean;
 
     /**
-     * Determines if this codepoint is part of the ANSI subset of Unicode.
+     * Determines if this codepoint is part of the ASCII subset of Unicode.
      * @param code The codepoint.
      */
     isAscii(code : number) : boolean;
 
     /**
-     * Checks if the codepoint is an ANSI letter: [a-zA-Z]
+     * Checks if the codepoint is an ASCII letter: [a-zA-Z]
      * @param code The codepoint.
      */
     isLetter(code : number) : boolean;
@@ -198,13 +198,13 @@ export interface StaticCharInfo {
     isBinary(char : string) : boolean;
 
     /**
-     * Determines if this codepoint is part of the ANSI subset of Unicode.
+     * Determines if this codepoint is part of the ASCII subset of Unicode.
      * @param char The codepoint.
      */
     isAscii(char : string) : boolean;
 
     /**
-     * Checks if the codepoint is an ANSI letter: [a-zA-Z]
+     * Checks if the codepoint is an ASCII letter: [a-zA-Z]
      * @param char The codepoint.
      */
     isLetter(char : string) : boolean;

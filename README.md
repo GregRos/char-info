@@ -5,17 +5,36 @@
 
 [API Documentation](https://gregros.github.io/char-info/)
 
-This is a library providing information about JavaScript Unicode characters. It's built with high performance in mind. Currently it only supports BMP (Basic Multilingual Plane) characters, which covers most common and uncommon symbols.
+A library that gives you information about individual Unicode characters. You can use for stuff like:
 
-Symbols outside of the BMP include some mathematical symbols, ancient scripts, additional emojis/ideograms, etc. These can only be represented using two or more characters in JavaScript which, when rendered as text, appear as a single symbol.
+1. Find out what language a character is in, such as Greek (α), Latin (a), Hebrew (א), and so on.
+2. Whether it's a kind of punctuation, digit, letter, emoji, spacing mark, or something else
+3. What Unicode character block it inhabits
+4. If it's upper-case or lower-case
 
-It aims to support characters outside the BMP in the future.
+That can be used for sanitizing input, parsing special characters, detecting languages, converting between encodings, etc. The library only supports characters in the BMP. There are no plans to expanding it beyond the BMP.
 
-Examples of the things you can do with this library:
+It's bundled with some basic Unicode information that originally came from the Unicode Character Database, so it's kind of heavy even though it's API is small. The information is processed into a tree-like data structure that's used to lookup characters. The package can also be used to get info about regular ASCII characters, which circumvents the lookup tree.
 
-1. Find out if a character is considered upper-case. This includes Latin script characters like A, B, C but also Greek ones like Γ. 
-2. Find out if a character is an inline space, including all kinds of typographic/mathematical spaces such as EN SPACE, EM SPACE, and so on.
+It also provides a list of Unicode groupings and their names, including lists of categories, blocks, and scripts. This is also reflected in the library's type definition files.
 
-Bear in mind that although the library is designed to be fast, most operations still involve lookups in an internal tree data structure.
+## Usage
+This package has 3 objects for getting information about characters:
 
-The library can be used on both client-side and server-side, though its code is probably larger than its function might suggest.
+1. `CharInfo`, takes strings with length 1 as arguments. Example functions include `CharInfo.isUniLetter`, `CharInfo.inScript`, etc.
+
+2. `CodeInfo`, takes numbers (assumed to be character codes) as parameters. Example functions include `CodeInfo.isUniLetter`, `CodeInfo.inScript`, etc.
+
+3. `Indicators`, which returns indicator objects that test if a character/code is in a specific Unicode group. You can get one for categories, blocks, and scripts.
+
+See more in the API documentation.
+
+## Examples 
+It's pretty simple to use. Here are some examples testing if letters have certain properties:
+
+	import {CharInfo, CodeInfo, Indicators, UnicodeScript} from 'char-info';
+	let a = CharInfo.isUniLetter("א");
+	let b = CharInfo.inScript("א", UnicodeScript.Hebrew);
+	let indicator = Indicators.script(UnicodeScript.Cyrilic);
+	let c = indicator.test("v");
+	let d = CodeInfo.isUniUpper("A".charCodeAt(0));
