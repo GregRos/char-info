@@ -1,6 +1,6 @@
 {
   "name": "char-info",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "repository": "https://github.com/GregRos/char-info",
   "homepage": "https://github.com/GregRos/char-info",
   "typings": "dist/index",
@@ -28,7 +28,9 @@
     "indicator",
     "isUpper",
     "isLower",
-    "unicode"
+    "unicode",
+    "utf8",
+    "utf16"
   ],
   "author": "Greg Rosenbaum",
   "license": "MIT",
