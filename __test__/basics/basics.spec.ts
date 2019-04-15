@@ -9,7 +9,7 @@ describe("basics", () => {
             expect(CharInfo.isUniLetter(char)).toBe(true);
             expect(CharInfo.isLetter(char)).toBe(true);
         });
-        it("is not lowercase", () =>{
+        it("is not lowercase", () => {
             expect(CharInfo.isLower(char)).toBe(false);
             expect(CharInfo.isUniLower(char)).toBe(false);
         });
@@ -21,7 +21,7 @@ describe("basics", () => {
             expect(CharInfo.isSpace(char)).toBe(false);
             expect(CharInfo.isUniSpace(char)).toBe(false);
         });
-        it("is not decimal",() => {
+        it("is not decimal", () => {
             expect(CharInfo.isDecimal(char)).toBe(false);
             expect(CharInfo.isUniDecimal(char)).toBe(false);
         });
@@ -30,16 +30,18 @@ describe("basics", () => {
         });
         it("is latin script", () => {
             expect(CharInfo.inScript(char, UnicodeScript.Latin));
-            expect(CharInfo.getScripts(char).find(x => x.name === UnicodeScript.Latin));
+            expect(CharInfo.getScripts(char)
+            .find(x => x.name === UnicodeScript.Latin));
         });
         it("is common script", () => {
             expect(CharInfo.inScript(char, UnicodeScript.Common));
-            expect(CharInfo.getScripts(char).find(x => x.name === UnicodeScript.Common));
+            expect(CharInfo.getScripts(char)
+            .find(x => x.name === UnicodeScript.Common));
         });
     });
     describe("newline", () => {
         it("works", () => {
             expect(CharInfo.isUniNewline("\u2028")).toBe(true);
-        })
-    })
+        });
+    });
 });

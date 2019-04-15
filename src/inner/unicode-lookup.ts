@@ -4,30 +4,31 @@
  */ /** */
 import DataIntervalTree, {Interval} from "node-interval-tree";
 import {rawData, RawUnicodeRecord} from "./data/index";
+
 export interface UnicodeCharGroup {
-    name : string;
-    alias ?: string;
-    intervals : Interval[];
-    displayName : string;
+    name: string;
+    alias?: string;
+    intervals: Interval[];
+    displayName: string;
 }
 
 export interface UnicodeLookup {
-    allBlocks : DataIntervalTree<UnicodeCharGroup>;
-    allCategories : DataIntervalTree<UnicodeCharGroup>;
-    allScripts : DataIntervalTree<UnicodeCharGroup>;
-    blocks : Map<string, UnicodeCharGroup>;
-    categories : Map<string, UnicodeCharGroup>;
-    scripts : Map<string, UnicodeCharGroup>;
-    longCategoryToCode : Map<string, string>;
+    allBlocks: DataIntervalTree<UnicodeCharGroup>;
+    allCategories: DataIntervalTree<UnicodeCharGroup>;
+    allScripts: DataIntervalTree<UnicodeCharGroup>;
+    blocks: Map<string, UnicodeCharGroup>;
+    categories: Map<string, UnicodeCharGroup>;
+    scripts: Map<string, UnicodeCharGroup>;
+    longCategoryToCode: Map<string, string>;
 }
 
-function homogenizeRawStr(str : string) {
+function homogenizeRawStr(str: string) {
     return str.toLowerCase().replace(/_/g, "");
 }
 
 const rangeRegex = /(\\\w[0-9a-fA-F]+|[\s\S])(?:-(\\\w[0-9a-fA-F]+|[\s\S]))?/g;
 
-function getCharCode(str : string) {
+function getCharCode(str: string) {
     if (str.length === 1) {
         return str.charCodeAt(0);
     }
@@ -35,11 +36,11 @@ function getCharCode(str : string) {
     return Number.parseInt(hex, 16);
 }
 
-function expandIntoRanges(compressedForm : string) {
+function expandIntoRanges(compressedForm: string) {
     let matches = [];
     let x = null;
-    while(x = rangeRegex.exec(compressedForm)) {
-        matches.push([x[1],x[2] || x[1]])
+    while (x = rangeRegex.exec(compressedForm)) {
+        matches.push([x[1], x[2] || x[1]]);
     }
     let ranges = [];
 
@@ -47,17 +48,17 @@ function expandIntoRanges(compressedForm : string) {
         let start = getCharCode(match[0]);
         let end = getCharCode(match[1]);
         ranges.push({
-            low : start,
-            high : end
-        } as Interval)
+            low: start,
+            high: end
+        } as Interval);
     }
     ranges.sort((a, b) => a.low - b.low);
     return ranges;
 }
 
-function expandRawRecord(raw : RawUnicodeRecord) {
-    let name : string;
-    let alias : string;
+function expandRawRecord(raw: RawUnicodeRecord) {
+    let name: string;
+    let alias: string;
     let fst = raw[0];
     if (fst.constructor === Array) {
         name = fst[0];
@@ -66,23 +67,24 @@ function expandRawRecord(raw : RawUnicodeRecord) {
         name = fst as string;
     }
     return {
-        name : name,
-        alias : alias,
-        intervals : expandIntoRanges(raw[1]),
+        name: name,
+        alias: alias,
+        intervals: expandIntoRanges(raw[1]),
         get displayName() {
             return this.alias || this.name;
         }
     } as UnicodeCharGroup;
 }
+
 function buildLookup() {
-    let lookup : UnicodeLookup= {
+    let lookup: UnicodeLookup = {
         allBlocks: new DataIntervalTree<UnicodeCharGroup>(),
         allCategories: new DataIntervalTree<UnicodeCharGroup>(),
         allScripts: new DataIntervalTree<UnicodeCharGroup>(),
         blocks: new Map(),
         categories: new Map(),
         scripts: new Map(),
-        longCategoryToCode : new Map()
+        longCategoryToCode: new Map()
     };
     for (let rawBlock of rawData.blocks) {
         let block = expandRawRecord(rawBlock);
@@ -110,13 +112,13 @@ function buildLookup() {
     return lookup;
 }
 
-export const lookupLoader = (function() {
+export const lookupLoader = (function () {
     let lookup: UnicodeLookup;
     return {
-        get lookup() : UnicodeLookup{
+        get lookup(): UnicodeLookup {
             if (lookup) return lookup;
             lookup = buildLookup();
             return lookup;
         }
-    }
+    };
 })();

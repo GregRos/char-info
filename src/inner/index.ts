@@ -1,4 +1,4 @@
 /**
  * @module char-info/inner
  */ /** */
-export {BasicCharClassIndicator} from './indicators';
+export {BasicCharClassIndicator} from "./indicators";

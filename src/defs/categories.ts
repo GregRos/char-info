@@ -1,5 +1,6 @@
 /** @module char-info/defs
- * */ /** */
+ * */
+/** */
 export namespace UnicodeCategory {
     export const Letter = "L";
     export const LetterUppercase = "Lu";

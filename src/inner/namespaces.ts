@@ -1,40 +1,45 @@
 /**
  * @module char-info
  */ /** */
-import {lookupLoader, UnicodeCharGroup} from './unicode-lookup';
-import {UnicodeCategory} from '../defs/categories';
+import {lookupLoader, UnicodeCharGroup} from "./unicode-lookup";
+import {UnicodeCategory} from "../defs/categories";
 import {BasicCharClassIndicator} from "./indicators";
-import {CharClassIndicator, StaticCharInfo, StaticCodeInfo, StaticIndicators} from "./abstract";
+import {
+    CharClassIndicator,
+    StaticCharInfo,
+    StaticCodeInfo,
+    StaticIndicators
+} from "./abstract";
 
-function homogenizeInputStr(str : string) {
+function homogenizeInputStr(str: string) {
     return str.toLowerCase().replace(/[_ -,]/g, "");
 }
 
 module Codes {
-   export const a = 'a'.charCodeAt(0);
-   export const f = 'f'.charCodeAt(0);
-   export const F = 'F'.charCodeAt(0);
-   export const z = 'z'.charCodeAt(0);
-   export const A = 'A'.charCodeAt(0);
-   export const Z = 'Z'.charCodeAt(0);
-   export const zero = '0'.charCodeAt(0);
-   export const nine = '9'.charCodeAt(0);
-   export const newline = '\n'.charCodeAt(0);
-   export const maxAscii = 0xff;
-   export const carriageReturn = '\r'.charCodeAt(0);
-   export const space = 0x0020;
-   export const tab = 0x0008;
-   export const minus = '-'.charCodeAt(0);
-   export const plus = '+'.charCodeAt(0);
-   export const decimalPoint = ".".charCodeAt(0);
-   export const e = a + 4;
-   export const E = A + 4;
-   export const underscore = "_".charCodeAt(0);
+    export const a = "a".charCodeAt(0);
+    export const f = "f".charCodeAt(0);
+    export const F = "F".charCodeAt(0);
+    export const z = "z".charCodeAt(0);
+    export const A = "A".charCodeAt(0);
+    export const Z = "Z".charCodeAt(0);
+    export const zero = "0".charCodeAt(0);
+    export const nine = "9".charCodeAt(0);
+    export const newline = "\n".charCodeAt(0);
+    export const maxAscii = 0xff;
+    export const carriageReturn = "\r".charCodeAt(0);
+    export const space = 0x0020;
+    export const tab = 0x0009;
+    export const minus = "-".charCodeAt(0);
+    export const plus = "+".charCodeAt(0);
+    export const decimalPoint = ".".charCodeAt(0);
+    export const e = a + 4;
+    export const E = A + 4;
+    export const underscore = "_".charCodeAt(0);
 }
 
 class IndicatorsImpl implements StaticIndicators {
 
-    category(category : string) : CharClassIndicator {
+    category(category: string): CharClassIndicator {
         category = homogenizeInputStr(category);
         if (category.length > 3) {
             category = lookupLoader.lookup.longCategoryToCode.get(category);
@@ -43,13 +48,13 @@ class IndicatorsImpl implements StaticIndicators {
         return new BasicCharClassIndicator(uGroup);
     }
 
-    script(script : string) {
+    script(script: string) {
         script = homogenizeInputStr(script);
         let uGroup = lookupLoader.lookup.scripts.get(script);
         return new BasicCharClassIndicator(uGroup);
     }
 
-    block(block : string) {
+    block(block: string) {
         block = homogenizeInputStr(block);
         let uGroup = lookupLoader.lookup.blocks.get(block);
         return new BasicCharClassIndicator(uGroup);
@@ -57,94 +62,105 @@ class IndicatorsImpl implements StaticIndicators {
 }
 
 /**
- * Provides factory methods for constructing objects that can check if a codepoint is in a unicode group.
+ * Provides factory methods for constructing objects that can check if a
+ * codepoint is in a unicode group.
  */
-export const Indicators : StaticIndicators = new IndicatorsImpl();
+export const Indicators: StaticIndicators = new IndicatorsImpl();
 
-const categoryGroupWordChars = [UnicodeCategory.Letter, UnicodeCategory.NumberDecimalDigit, UnicodeCategory.PunctuationConnector, UnicodeCategory.PunctuationDash];
+const categoryGroupWordChars = [UnicodeCategory.Letter,
+    UnicodeCategory.NumberDecimalDigit,
+    UnicodeCategory.PunctuationConnector,
+    UnicodeCategory.PunctuationDash];
 
-class CodeInfoImpl implements StaticCodeInfo{
+class CodeInfoImpl implements StaticCodeInfo {
 
-    getScripts(code : number) : UnicodeCharGroup[] {
+    getScripts(code: number): UnicodeCharGroup[] {
         return lookupLoader.lookup.allScripts.search(code, code);
     }
 
-    getCategories(code : number) {
+    getCategories(code: number) {
         return lookupLoader.lookup.allCategories.search(code, code);
     }
 
-    isAscii(code : number) {
+    isAscii(code: number) {
         return code >= 0 && code <= Codes.maxAscii;
     }
 
 
-    getBlock(code : number) {
+    getBlock(code: number) {
         return lookupLoader.lookup.allBlocks.search(code, code)[0];
     }
 
-    isHex(code : number) {
-        return code >= Codes.A && code <= Codes.F || code >= Codes.a && code <= Codes.f || code >= Codes.zero && code <= Codes.nine;
+    isHex(code: number) {
+        return code >= Codes.A && code <= Codes.F || code >= Codes.a && code <=
+            Codes.f || code >= Codes.zero && code <= Codes.nine;
     }
 
-    isDecimal(code : number) {
+    isDecimal(code: number) {
         return code >= Codes.zero && code <= Codes.nine;
     }
 
-    isLetter(code : number) {
-        return code >= Codes.a && code <= Codes.z || code >= Codes.A && code <= Codes.Z;
+    isLetter(code: number) {
+        return code >= Codes.a && code <= Codes.z || code >= Codes.A && code <=
+            Codes.Z;
     }
 
-    isUpper(code : number) {
+    isUpper(code: number) {
         return code >= Codes.A && code <= Codes.Z;
     }
 
-    isLower(code : number) {
+    isLower(code: number) {
         return code >= Codes.a && code <= Codes.z;
     }
 
-    isNewline(code : number) {
+    isNewline(code: number) {
         return code === Codes.carriageReturn || code === Codes.newline;
     }
 
-    isSpace(code : number) {
+    isSpace(code: number) {
         return code === Codes.space || code === Codes.tab;
     }
 
-    isBinary(code : number) {
+    isBinary(code: number) {
         return code === Codes.zero || code === Codes.zero + 1;
     }
 
-    isUniDecimal(code : number) {
-        return Indicators.category(UnicodeCategory.NumberDecimalDigit).test(code);
+    isUniDecimal(code: number) {
+        return Indicators.category(UnicodeCategory.NumberDecimalDigit)
+        .test(code);
     }
-    isUniLetter(code : number) {
+
+    isUniLetter(code: number) {
         return Indicators.category(UnicodeCategory.Letter).test(code);
     }
-    isUniLower(code : number) {
+
+    isUniLower(code: number) {
         return Indicators.category(UnicodeCategory.LetterLowercase).test(code);
     }
 
-    isUniUpper(code : number) {
+    isUniUpper(code: number) {
         return Indicators.category(UnicodeCategory.LetterUppercase).test(code);
     }
 
-    isUniLetterModifier(code : number) {
-        return Indicators.category(UnicodeCategory.LetterModifier).test(code)
+    isUniLetterModifier(code: number) {
+        return Indicators.category(UnicodeCategory.LetterModifier).test(code);
     }
 
-    isUniSpace(code : number) {
-        return Indicators.category(UnicodeCategory.SeparatorSpace).test(code)
+    isUniSpace(code: number) {
+        return Indicators.category(UnicodeCategory.SeparatorSpace).test(code);
     }
 
-    isUniNewline(code : number) {
-        return Indicators.category(UnicodeCategory.Custom_SeparatorVertical).test(code)
+    isUniNewline(code: number) {
+        return Indicators.category(UnicodeCategory.Custom_SeparatorVertical)
+        .test(code);
     }
 
-    isUniWordChar(code : number) {
-        return !!CodeInfo.getCategories(code).find(cat => categoryGroupWordChars.includes(cat.name));
+    isUniWordChar(code: number) {
+        return !!CodeInfo.getCategories(code)
+        .find(cat => categoryGroupWordChars.includes(cat.name));
     }
 
-    isWordChar(code : number) {
+    isWordChar(code: number) {
         return code >= Codes.A && code <= Codes.Z
             || code >= Codes.zero && code <= Codes.nine
             || code >= Codes.a && code <= Codes.z
@@ -152,120 +168,125 @@ class CodeInfoImpl implements StaticCodeInfo{
             || code === Codes.minus;
     }
 
-    inBlock(code : number, block : string) {
+    inBlock(code: number, block: string) {
         return Indicators.block(block).test(code);
     }
 
-    inCategory(code : number, block : string) {
+    inCategory(code: number, block: string) {
         return Indicators.category(block).test(code);
     }
 
-    inScript(code : number, script : string) {
+    inScript(code: number, script: string) {
         return Indicators.script(script).test(code);
     }
 }
-/**
- * Provides methods for determining if a character codepoint has specific properties.
- */
-export const CodeInfo : StaticCodeInfo  = new CodeInfoImpl() as StaticCodeInfo;
 
-class CharInfoImpl implements StaticCharInfo{
-    getScripts(code : string) : UnicodeCharGroup[] {
+/**
+ * Provides methods for determining if a character codepoint has specific
+ * properties.
+ */
+export const CodeInfo: StaticCodeInfo = new CodeInfoImpl() as StaticCodeInfo;
+
+class CharInfoImpl implements StaticCharInfo {
+    getScripts(code: string): UnicodeCharGroup[] {
         return CodeInfo.getScripts(code.charCodeAt(0));
     }
 
-    getCategories(code : string) {
+    getCategories(code: string) {
         return CodeInfo.getCategories(code.charCodeAt(0));
     }
 
-    isAscii(code : string) {
+    isAscii(code: string) {
         return CodeInfo.isAscii(code.charCodeAt(0));
     }
 
 
-    getBlock(code : string) {
+    getBlock(code: string) {
         return CodeInfo.getBlock(code.charCodeAt(0));
     }
 
-    isHex(code : string) {
+    isHex(code: string) {
         return CodeInfo.isHex(code.charCodeAt(0));
     }
 
-    isDecimal(code : string) {
+    isDecimal(code: string) {
         return CodeInfo.isDecimal(code.charCodeAt(0));
     }
 
-    isLetter(code : string) {
+    isLetter(code: string) {
         return CodeInfo.isLetter(code.charCodeAt(0));
     }
 
-    isUpper(code : string) {
+    isUpper(code: string) {
         return CodeInfo.isUpper(code.charCodeAt(0));
     }
 
-    isLower(code : string) {
+    isLower(code: string) {
         return CodeInfo.isLower(code.charCodeAt(0));
     }
 
-    isNewline(code : string) {
+    isNewline(code: string) {
         return CodeInfo.isNewline(code.charCodeAt(0));
     }
 
-    isSpace(code : string) {
+    isSpace(code: string) {
         return CodeInfo.isSpace(code.charCodeAt(0));
     }
 
-    isBinary(code : string) {
+    isBinary(code: string) {
         return CodeInfo.isBinary(code.charCodeAt(0));
     }
 
-    isUniDecimal(code : string) {
+    isUniDecimal(code: string) {
         return CodeInfo.isUniDecimal(code.charCodeAt(0));
     }
-    isUniLetter(code : string) {
+
+    isUniLetter(code: string) {
         return CodeInfo.isUniLetter(code.charCodeAt(0));
     }
-    isUniLower(code : string) {
+
+    isUniLower(code: string) {
         return CodeInfo.isUniLower(code.charCodeAt(0));
     }
 
-    isUniUpper(code : string) {
+    isUniUpper(code: string) {
         return CodeInfo.isUniUpper(code.charCodeAt(0));
     }
 
-    isUniLetterModifier(code : string) {
+    isUniLetterModifier(code: string) {
         return CodeInfo.isUniLetterModifier(code.charCodeAt(0));
     }
 
-    isUniSpace(code : string) {
+    isUniSpace(code: string) {
         return CodeInfo.isUniSpace(code.charCodeAt(0));
     }
 
-    isUniNewline(code : string) {
+    isUniNewline(code: string) {
         return CodeInfo.isUniNewline(code.charCodeAt(0));
     }
 
-    isUniWordChar(code : string) {
+    isUniWordChar(code: string) {
         return CodeInfo.isUniWordChar(code.charCodeAt(0));
     }
 
-    isWordChar(code : string) {
+    isWordChar(code: string) {
         return CodeInfo.isWordChar(code.charCodeAt(0));
     }
 
-    inBlock(code : string, block : string) {
+    inBlock(code: string, block: string) {
         return CodeInfo.inBlock(code.charCodeAt(0), block);
     }
 
-    inCategory(code : string, block : string) {
+    inCategory(code: string, block: string) {
         return CodeInfo.inCategory(code.charCodeAt(0), block);
     }
 
-    inScript(code : string, script : string) {
+    inScript(code: string, script: string) {
         return CodeInfo.inScript(code.charCodeAt(0), script);
     }
 }
+
 /**
  * Provides methods for determining if a character has specific properties.
  */
-export const CharInfo : StaticCharInfo  = new CharInfoImpl() as StaticCharInfo;
+export const CharInfo: StaticCharInfo = new CharInfoImpl() as StaticCharInfo;

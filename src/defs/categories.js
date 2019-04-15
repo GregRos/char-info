@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module char-info/defs
- * */ /** */
+ * */
+/** */
 var UnicodeCategory;
 (function (UnicodeCategory) {
     UnicodeCategory.Letter = "L";

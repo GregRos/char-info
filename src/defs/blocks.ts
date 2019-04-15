@@ -1,5 +1,6 @@
 /** @module char-info/defs
- * */ /** */
+ * */
+/** */
 
 export module UnicodeBlock {
     export const AlphabeticPresentationForms = "AlphabeticPresentationForms";

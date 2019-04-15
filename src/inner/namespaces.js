@@ -11,21 +11,21 @@ function homogenizeInputStr(str) {
 }
 var Codes;
 (function (Codes) {
-    Codes.a = 'a'.charCodeAt(0);
-    Codes.f = 'f'.charCodeAt(0);
-    Codes.F = 'F'.charCodeAt(0);
-    Codes.z = 'z'.charCodeAt(0);
-    Codes.A = 'A'.charCodeAt(0);
-    Codes.Z = 'Z'.charCodeAt(0);
-    Codes.zero = '0'.charCodeAt(0);
-    Codes.nine = '9'.charCodeAt(0);
-    Codes.newline = '\n'.charCodeAt(0);
+    Codes.a = "a".charCodeAt(0);
+    Codes.f = "f".charCodeAt(0);
+    Codes.F = "F".charCodeAt(0);
+    Codes.z = "z".charCodeAt(0);
+    Codes.A = "A".charCodeAt(0);
+    Codes.Z = "Z".charCodeAt(0);
+    Codes.zero = "0".charCodeAt(0);
+    Codes.nine = "9".charCodeAt(0);
+    Codes.newline = "\n".charCodeAt(0);
     Codes.maxAscii = 0xff;
-    Codes.carriageReturn = '\r'.charCodeAt(0);
+    Codes.carriageReturn = "\r".charCodeAt(0);
     Codes.space = 0x0020;
-    Codes.tab = 0x0008;
-    Codes.minus = '-'.charCodeAt(0);
-    Codes.plus = '+'.charCodeAt(0);
+    Codes.tab = 0x0009;
+    Codes.minus = "-".charCodeAt(0);
+    Codes.plus = "+".charCodeAt(0);
     Codes.decimalPoint = ".".charCodeAt(0);
     Codes.e = Codes.a + 4;
     Codes.E = Codes.A + 4;
@@ -55,10 +55,14 @@ var IndicatorsImpl = (function () {
     return IndicatorsImpl;
 }());
 /**
- * Provides factory methods for constructing objects that can check if a codepoint is in a unicode group.
+ * Provides factory methods for constructing objects that can check if a
+ * codepoint is in a unicode group.
  */
 exports.Indicators = new IndicatorsImpl();
-var categoryGroupWordChars = [categories_1.UnicodeCategory.Letter, categories_1.UnicodeCategory.NumberDecimalDigit, categories_1.UnicodeCategory.PunctuationConnector, categories_1.UnicodeCategory.PunctuationDash];
+var categoryGroupWordChars = [categories_1.UnicodeCategory.Letter,
+    categories_1.UnicodeCategory.NumberDecimalDigit,
+    categories_1.UnicodeCategory.PunctuationConnector,
+    categories_1.UnicodeCategory.PunctuationDash];
 var CodeInfoImpl = (function () {
     function CodeInfoImpl() {
     }
@@ -75,13 +79,15 @@ var CodeInfoImpl = (function () {
         return unicode_lookup_1.lookupLoader.lookup.allBlocks.search(code, code)[0];
     };
     CodeInfoImpl.prototype.isHex = function (code) {
-        return code >= Codes.A && code <= Codes.F || code >= Codes.a && code <= Codes.f || code >= Codes.zero && code <= Codes.nine;
+        return code >= Codes.A && code <= Codes.F || code >= Codes.a && code <=
+            Codes.f || code >= Codes.zero && code <= Codes.nine;
     };
     CodeInfoImpl.prototype.isDecimal = function (code) {
         return code >= Codes.zero && code <= Codes.nine;
     };
     CodeInfoImpl.prototype.isLetter = function (code) {
-        return code >= Codes.a && code <= Codes.z || code >= Codes.A && code <= Codes.Z;
+        return code >= Codes.a && code <= Codes.z || code >= Codes.A && code <=
+            Codes.Z;
     };
     CodeInfoImpl.prototype.isUpper = function (code) {
         return code >= Codes.A && code <= Codes.Z;
@@ -99,7 +105,8 @@ var CodeInfoImpl = (function () {
         return code === Codes.zero || code === Codes.zero + 1;
     };
     CodeInfoImpl.prototype.isUniDecimal = function (code) {
-        return exports.Indicators.category(categories_1.UnicodeCategory.NumberDecimalDigit).test(code);
+        return exports.Indicators.category(categories_1.UnicodeCategory.NumberDecimalDigit)
+            .test(code);
     };
     CodeInfoImpl.prototype.isUniLetter = function (code) {
         return exports.Indicators.category(categories_1.UnicodeCategory.Letter).test(code);
@@ -117,10 +124,12 @@ var CodeInfoImpl = (function () {
         return exports.Indicators.category(categories_1.UnicodeCategory.SeparatorSpace).test(code);
     };
     CodeInfoImpl.prototype.isUniNewline = function (code) {
-        return exports.Indicators.category(categories_1.UnicodeCategory.Custom_SeparatorVertical).test(code);
+        return exports.Indicators.category(categories_1.UnicodeCategory.Custom_SeparatorVertical)
+            .test(code);
     };
     CodeInfoImpl.prototype.isUniWordChar = function (code) {
-        return !!exports.CodeInfo.getCategories(code).find(function (cat) { return categoryGroupWordChars.includes(cat.name); });
+        return !!exports.CodeInfo.getCategories(code)
+            .find(function (cat) { return categoryGroupWordChars.includes(cat.name); });
     };
     CodeInfoImpl.prototype.isWordChar = function (code) {
         return code >= Codes.A && code <= Codes.Z
@@ -141,7 +150,8 @@ var CodeInfoImpl = (function () {
     return CodeInfoImpl;
 }());
 /**
- * Provides methods for determining if a character codepoint has specific properties.
+ * Provides methods for determining if a character codepoint has specific
+ * properties.
  */
 exports.CodeInfo = new CodeInfoImpl();
 var CharInfoImpl = (function () {

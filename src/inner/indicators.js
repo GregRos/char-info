@@ -16,7 +16,8 @@ function binarySearchInIntervals(intervals) {
     };
 }
 /**
- * Basic implementation for the CharClassIndicator, using binary search in an array of ranges.
+ * Basic implementation for the CharClassIndicator, using binary search in an
+ * array of ranges.
  */
 var BasicCharClassIndicator = (function () {
     function BasicCharClassIndicator(_group) {

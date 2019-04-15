@@ -30,11 +30,13 @@ describe("basics", function () {
         });
         it("is latin script", function () {
             expect(namespaces_1.CharInfo.inScript(char, scripts_1.UnicodeScript.Latin));
-            expect(namespaces_1.CharInfo.getScripts(char).find(function (x) { return x.name === scripts_1.UnicodeScript.Latin; }));
+            expect(namespaces_1.CharInfo.getScripts(char)
+                .find(function (x) { return x.name === scripts_1.UnicodeScript.Latin; }));
         });
         it("is common script", function () {
             expect(namespaces_1.CharInfo.inScript(char, scripts_1.UnicodeScript.Common));
-            expect(namespaces_1.CharInfo.getScripts(char).find(function (x) { return x.name === scripts_1.UnicodeScript.Common; }));
+            expect(namespaces_1.CharInfo.getScripts(char)
+                .find(function (x) { return x.name === scripts_1.UnicodeScript.Common; }));
         });
     });
     describe("newline", function () {

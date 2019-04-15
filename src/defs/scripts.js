@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /** @module char-info/defs
- * */ /** */
+ * */
+/** */
 var UnicodeScript;
 (function (UnicodeScript) {
     UnicodeScript.Arabic = "Arabic";

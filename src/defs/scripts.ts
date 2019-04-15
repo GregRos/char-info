@@ -1,5 +1,6 @@
 /** @module char-info/defs
- * */ /** */
+ * */
+/** */
 export module UnicodeScript {
     export const Arabic = "Arabic";
     export const Armenian = "Armenian";
@@ -30,7 +31,8 @@ export module UnicodeScript {
     export const Hebrew = "Hebrew";
     export const Hiragana = "Hiragana";
     export const Inherited = "Inherited";
-    export const Javanese = "Javanese";    export const Kannada = "Kannada";
+    export const Javanese = "Javanese";
+    export const Kannada = "Kannada";
     export const Katakana = "Katakana";
     export const KayahLi = "KayahLi";
     export const Khmer = "Khmer";

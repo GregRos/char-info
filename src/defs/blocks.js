@@ -1,6 +1,7 @@
 "use strict";
 /** @module char-info/defs
- * */ /** */
+ * */
+/** */
 Object.defineProperty(exports, "__esModule", { value: true });
 var UnicodeBlock;
 (function (UnicodeBlock) {
