@@ -36,11 +36,11 @@ describe("basics", () => {
             expect(isAscii(char)).toBe(true);
         });
         it("is latin script", () => {
-            expect(uniScript(UnicodeScript.Latin).char(char));;
+            expect(uniScript(UnicodeScript.Latin).char(char));
             expect(uniGetScripts.char(char).find(x => x.name === UnicodeScript.Latin));
         });
         it("is common script", () => {
-            expect(uniScript(UnicodeScript.Common).char(char));;
+            expect(uniScript(UnicodeScript.Common).char(char));
             expect(uniGetScripts.char(char).find(x => x.name === UnicodeScript.Common));
         });
     });

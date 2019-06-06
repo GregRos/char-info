@@ -1,8 +1,8 @@
 /** @module char-info/defs
  * */
-/** */
+/* tslint:disable:naming-convention */
 
-export module UnicodeBlock {
+export namespace UnicodeBlock {
     export const AlphabeticPresentationForms = "AlphabeticPresentationForms";
     export const Arabic = "Arabic";
     export const ArabicExtendedA = "ArabicExtendedA";

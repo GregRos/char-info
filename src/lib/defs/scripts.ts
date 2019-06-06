@@ -1,7 +1,7 @@
 /** @module char-info/defs
  * */
 /** */
-export module UnicodeScript {
+export namespace UnicodeScript {
     export const Arabic = "Arabic";
     export const Armenian = "Armenian";
     export const Balinese = "Balinese";

@@ -1,6 +1,8 @@
 /** @module char-info/defs
  * */
 /** */
+/* tslint:disable:naming-convention */
+
 export namespace UnicodeCategory {
     export const Letter = "L";
     export const LetterUppercase = "Lu";

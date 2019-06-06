@@ -13,7 +13,7 @@ export {
     isHex,
     isDecimal,
     isAscii
-} from "./ascii-chars"
+} from "./ascii-chars";
 
 export {
     uniGetScripts,
@@ -31,6 +31,6 @@ export {
     UnicodeBlock,
     UnicodeCategory,
     UnicodeScript
-} from "./unicode"
+} from "./unicode";
 
 export {CharClassIndicator} from "./inner/indicators";

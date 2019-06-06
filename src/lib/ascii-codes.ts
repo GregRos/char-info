@@ -1,4 +1,4 @@
-export module Codes {
+export namespace Codes {
     export const a = "a".charCodeAt(0);
     export const f = "f".charCodeAt(0);
     export const F = "F".charCodeAt(0);

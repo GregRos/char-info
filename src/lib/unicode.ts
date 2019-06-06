@@ -110,4 +110,4 @@ export {
     UnicodeScript,
     UnicodeCategory,
     UnicodeBlock
-} from "./defs"
+} from "./defs";

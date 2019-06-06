@@ -2,6 +2,8 @@
  * @module char-info/inner
  * @external
  */ /** */
+/* tslint:disable:naming-convention */
+
 import DataIntervalTree, {Interval} from "node-interval-tree";
 import {rawData, RawUnicodeRecord} from "./data/index";
 
@@ -67,8 +69,8 @@ function expandRawRecord(raw: RawUnicodeRecord) {
         name = fst as string;
     }
     return {
-        name: name,
-        alias: alias,
+        name,
+        alias,
         intervals: expandIntoRanges(raw[1]),
         get displayName() {
             return this.alias || this.name;
