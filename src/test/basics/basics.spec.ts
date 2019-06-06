@@ -1,46 +1,52 @@
-import {CharInfo} from "../../lib";
 import {UnicodeScript} from "../../lib/defs";
+import {
+    uniDecimal, uniGetScripts,
+    uniLetter,
+    uniLower, uniNewline, uniScript,
+    uniSpace,
+    uniUpper
+} from "../../lib/inner/unicode";
+import {isDecimal, isLetter, isLower, isSpace, isUpper} from "../../lib";
+import {isAscii} from "../../lib/inner/ascii-chars";
 
 describe("basics", () => {
     describe("Upper-case ASCII letter", () => {
         let char = "G";
         it("is letter", () => {
-            expect(CharInfo.isUniLetter(char)).toBe(true);
-            expect(CharInfo.isLetter(char)).toBe(true);
+            expect(uniLetter.char(char)).toBe(true);
+            expect(isLetter(char)).toBe(true);
         });
         it("is not lowercase", () => {
-            expect(CharInfo.isLower(char)).toBe(false);
-            expect(CharInfo.isUniLower(char)).toBe(false);
+            expect(isLower(char)).toBe(false);
+            expect(uniLower.char(char)).toBe(false);
         });
         it("is uppercase", () => {
-            expect(CharInfo.isUpper(char)).toBe(true);
-            expect(CharInfo.isUniUpper(char)).toBe(true);
+            expect(isUpper(char)).toBe(true);
+            expect(uniUpper.char(char)).toBe(true);
         });
         it("is not space", () => {
-            expect(CharInfo.isSpace(char)).toBe(false);
-            expect(CharInfo.isUniSpace(char)).toBe(false);
+            expect(isSpace(char)).toBe(false);
+            expect(uniSpace.char(char)).toBe(false);
         });
         it("is not decimal", () => {
-            expect(CharInfo.isDecimal(char)).toBe(false);
-            expect(CharInfo.isUniDecimal(char)).toBe(false);
+            expect(isDecimal(char)).toBe(false);
+            expect(uniDecimal.char(char)).toBe(false);
         });
         it("is ASCII", () => {
-            expect(CharInfo.isAscii(char)).toBe(true);
+            expect(isAscii(char)).toBe(true);
         });
         it("is latin script", () => {
-            expect(CharInfo.inScript(char, UnicodeScript.Latin));
-            expect(CharInfo.getScripts(char)
-            .find(x => x.name === UnicodeScript.Latin));
+            expect(uniScript(UnicodeScript.Latin).char(char));;
+            expect(uniGetScripts.char(char).find(x => x.name === UnicodeScript.Latin));
         });
         it("is common script", () => {
-            expect(CharInfo.inScript(char, UnicodeScript.Common));
-            expect(CharInfo.getScripts(char)
-            .find(x => x.name === UnicodeScript.Common));
+            expect(uniScript(UnicodeScript.Common).char(char));;
+            expect(uniGetScripts.char(char).find(x => x.name === UnicodeScript.Common));
         });
     });
     describe("newline", () => {
         it("works", () => {
-            expect(CharInfo.isUniNewline("\u2028")).toBe(true);
+            expect(uniNewline.char("\u2028")).toBe(true);
         });
     });
 });

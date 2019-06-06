@@ -112,13 +112,4 @@ function buildLookup() {
     return lookup;
 }
 
-export const lookupLoader = (function () {
-    let lookup: UnicodeLookup;
-    return {
-        get lookup(): UnicodeLookup {
-            if (lookup) return lookup;
-            lookup = buildLookup();
-            return lookup;
-        }
-    };
-})();
+export const lookup = buildLookup();

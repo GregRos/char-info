@@ -1,8 +1,18 @@
 /**
  * @module char-info
  */ /** */
-export {
-    StaticCodeInfo, StaticIndicators, CharClassIndicator, StaticCharInfo
-}from "./inner/abstract";
-export {Indicators, CodeInfo, CharInfo} from "./inner/namespaces";
 export {Interval} from "node-interval-tree";
+
+export {
+    isWordChar,
+    isUpper,
+    isSpace,
+    isNewline,
+    isLower,
+    isLetter,
+    isBinary,
+    isHex,
+    isDecimal,
+    isAscii
+} from "./inner/ascii-chars"
+export {CharClassIndicator} from "./inner/indicators";

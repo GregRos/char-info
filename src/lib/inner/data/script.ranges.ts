@@ -1,12 +1,3 @@
-/**
- * Modified from the Unicode data in the XRegExp package, which is released
- * under the MIT License. https://github.com/slevithan/xregexp
- *
- * This file is deliberately stored in a highly-compressed format to optimize
- * client-side usage.
- * @module char-info/inner/data
- * @external
- * */ /** */
 export = [
     [
         "Arabic",

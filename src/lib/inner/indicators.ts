@@ -1,9 +1,8 @@
 /**
  * @module char-info/inner
- */ /** */
+ */  /** */
 import {UnicodeCharGroup} from "./unicode-lookup";
 import {Interval} from "node-interval-tree";
-import {CharClassIndicator} from "./abstract";
 
 function binarySearchInIntervals(intervals: Interval[]) {
     return function bin(start: number, end: number, char: number) {
@@ -21,6 +20,20 @@ function binarySearchInIntervals(intervals: Interval[]) {
 }
 
 /**
+ * An object that can determine if a given codepoint or character is part of
+ * some single Unicode group.
+ */
+export interface CharClassIndicator {
+    /**
+     * Checks if the codepoint is part of the Unicode group.
+     * @param char The codepoint.
+     */
+    code(char: number): boolean;
+
+    char(str: string): boolean;
+}
+
+/**
  * Basic implementation for the CharClassIndicator, using binary search in an
  * array of ranges.
  */
@@ -33,17 +46,13 @@ export class BasicCharClassIndicator implements CharClassIndicator {
         this._binarySearchInIntervals = binarySearchInIntervals(intervals);
     }
 
-    get description() {
-        return this._group.displayName;
-    }
-
-    test(char: number) {
+    code(char: number) {
         let intervals = this._group.intervals;
         return this._binarySearchInIntervals(0, intervals.length - 1, char);
     }
 
-    test_str(char: string) {
+    char(char: string) {
         let intervals = this._group.intervals;
-        return this.test(char.codePointAt(0));
+        return this.code(char.codePointAt(0));
     }
 }
