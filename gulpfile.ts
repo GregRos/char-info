@@ -36,22 +36,3 @@ gulp.task("compile-ts", () => {
 gulp.task("watch", ["clean-dist", "compile-ts"], () => {
     gulp.watch(tsFiles.concat(watchToo), ["clean-dist", "compile-ts"]);
 });
-
-gulp.task("typedoc", () => {
-    return gulp.src(["src/**/*.ts"])
-    .pipe(typedoc({
-        exclude: "**/node_modules",
-        target: "es6",
-        out: "./docs",
-        module: "commonjs",
-        // TypeDoc options (see typedoc docs)
-        name: "char-info",
-        ignoreCompilerErrors: true,
-        version: true,
-        mode: "modules",
-        "lib": ["es6", "es2016.array.include"],
-        includeDeclarations: true,
-        excludeExternals: true,
-        excludePrivate: true
-    }));
-});

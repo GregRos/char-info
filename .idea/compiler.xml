@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="TypeScriptCompiler">
+    <option name="nodeInterpreterTextField" value="wsl://UBUNTU1804@/home/gr/.nvm/versions/node/v10.15.3/bin/node" />
+    <option name="recompileOnChanges" value="true" />
+    <option name="showAllErrors" value="true" />
+    <option name="useConfig" value="true" />
+  </component>
+</project>

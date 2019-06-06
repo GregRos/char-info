@@ -1,6 +1,5 @@
-import {CharInfo} from "../../src/inner/namespaces";
-import {UnicodeCategory} from "../../src/defs/categories";
-import {UnicodeScript} from "../../src/defs/scripts";
+import {CharInfo} from "../../lib";
+import {UnicodeScript} from "../../lib/defs";
 
 describe("basics", () => {
     describe("Upper-case ASCII letter", () => {
