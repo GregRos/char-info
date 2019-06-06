@@ -5,7 +5,10 @@
 /* tslint:disable:naming-convention */
 
 import DataIntervalTree, {Interval} from "node-interval-tree";
-import {rawData, RawUnicodeRecord} from "./data/index";
+
+import blocks from "./data/block.ranges";
+import categories from "./data/category.ranges";
+import scripts from "./data/script.ranges";
 
 export interface UnicodeCharGroup {
     name: string;
@@ -58,6 +61,10 @@ function expandIntoRanges(compressedForm: string) {
     return ranges;
 }
 
+type RawUnicodeName = string | [string, string];
+
+type RawUnicodeRecord = [RawUnicodeName, string];
+
 function expandRawRecord(raw: RawUnicodeRecord) {
     let name: string;
     let alias: string;
@@ -88,15 +95,15 @@ function buildLookup() {
         scripts: new Map(),
         longCategoryToCode: new Map()
     };
-    for (let rawBlock of rawData.blocks) {
-        let block = expandRawRecord(rawBlock);
+    for (let rawBlock of blocks) {
+        let block = expandRawRecord(rawBlock as RawUnicodeRecord);
         lookup.blocks.set(homogenizeRawStr(block.name), block);
         for (let interval of block.intervals) {
             lookup.allBlocks.insert(interval.low, interval.high, block);
         }
     }
-    for (let rawCategory of rawData.categories) {
-        let cat = expandRawRecord(rawCategory);
+    for (let rawCategory of categories) {
+        let cat = expandRawRecord(rawCategory as RawUnicodeRecord);
         let hName = homogenizeRawStr(cat.name);
         lookup.categories.set(hName, cat);
         lookup.longCategoryToCode.set(homogenizeRawStr(cat.alias), hName);
@@ -104,8 +111,8 @@ function buildLookup() {
             lookup.allCategories.insert(interval.low, interval.high, cat);
         }
     }
-    for (let rawScript of rawData.scripts) {
-        let script = expandRawRecord(rawScript);
+    for (let rawScript of scripts) {
+        let script = expandRawRecord(rawScript as RawUnicodeRecord);
         lookup.scripts.set(homogenizeRawStr(script.name), script);
         for (let interval of script.intervals) {
             lookup.allScripts.insert(interval.low, interval.high, script);

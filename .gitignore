@@ -9,7 +9,8 @@
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
-
+.tmp/
+dist_es2015/
 # Sensitive or high-churn files:
 .idea/
 .idea/dataSources.ids

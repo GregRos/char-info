@@ -1,5 +1,5 @@
 
-export = [
+export default [
     [
         "AlphabeticPresentationForms",
         "\uFB00-\uFB4F"
