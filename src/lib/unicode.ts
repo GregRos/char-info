@@ -1,6 +1,6 @@
 import {lookup} from "./inner/unicode-lookup";
 import {BasicCharClassIndicator, CharClassIndicator} from "./inner/indicators";
-import {UnicodeCategory} from "./defs";
+import {UnicodeCategory} from "./inner/defs";
 
 function homogenizeInputStr(str: string) {
     return str.toLowerCase().replace(/[_ -,]/g, "");
@@ -110,4 +110,4 @@ export {
     UnicodeScript,
     UnicodeCategory,
     UnicodeBlock
-} from "./defs";
+} from "./inner/defs";
