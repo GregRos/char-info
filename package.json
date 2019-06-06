@@ -7,10 +7,11 @@
   "description": "Unicode character information library. Usable from both server- and client-side",
   "main": "dist/index.js",
   "scripts": {
-    "test": "node ./jrunner.js",
-    "cover": "npm-run istanbul cover jrunner.js",
+    "test": "node ./dist/test/jrunner.js",
+    "cover": "npm-run istanbul cover ./dist/test/jrunner.js",
     "build": "rm -rf dist && tsc"
   },
+  "sideEffects": false,
   "directories": {
     "test": "__test__",
     "lib": "dist"
@@ -36,7 +37,8 @@
   "author": "Greg Rosenbaum",
   "license": "MIT",
   "dependencies": {
-    "node-interval-tree": "^1.0.0"
+    "node-interval-tree": "^1.0.0",
+    "retarget-sourcemaps-after-move": "0.1.1"
   },
   "devDependencies": {
     "@types/globby": "^9.1.0",
@@ -53,7 +55,10 @@
     "jasmine-spec-reporter": "^2.7.0",
     "lodash": "^4.17.4",
     "merge2": "^1.0.3",
+    "parcel": "^1.12.3",
     "source-map-support": "^0.4.14",
+    "tslint": "^5.17.0",
+    "tslint-config-gregros": "^1.1.0",
     "typedoc": "^0.5.10",
     "typedoc-plugin-external-module-name": "^1.0.9",
     "typedoc-plugin-internal-external": "^1.0.9",

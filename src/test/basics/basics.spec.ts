@@ -5,9 +5,9 @@ import {
     uniLower, uniNewline, uniScript,
     uniSpace,
     uniUpper
-} from "../../lib/inner/unicode";
+} from "../../lib/unicode";
 import {isDecimal, isLetter, isLower, isSpace, isUpper} from "../../lib";
-import {isAscii} from "../../lib/inner/ascii-chars";
+import {isAscii} from "../../lib/ascii-chars";
 
 describe("basics", () => {
     describe("Upper-case ASCII letter", () => {

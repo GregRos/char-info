@@ -10,9 +10,27 @@ export {
     isNewline,
     isLower,
     isLetter,
-    isBinary,
     isHex,
     isDecimal,
     isAscii
-} from "./inner/ascii-chars"
+} from "./ascii-chars"
+
+export {
+    uniGetScripts,
+    uniScript,
+    uniLower,
+    uniLetter,
+    uniGetCategories,
+    uniGetBlock,
+    uniCategory,
+    uniNewline,
+    uniBlock,
+    uniDecimal,
+    uniSpace,
+    uniUpper,
+    UnicodeBlock,
+    UnicodeCategory,
+    UnicodeScript
+} from "./unicode"
+
 export {CharClassIndicator} from "./inner/indicators";

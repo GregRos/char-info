@@ -30,6 +30,10 @@ export interface CharClassIndicator {
      */
     code(char: number): boolean;
 
+    /**
+     * Checks if a character is in a Unicode group.
+     * @param str A string representing a character.
+     */
     char(str: string): boolean;
 }
 
