@@ -1,6 +1,9 @@
 /** @module char-info/defs
  * */
 /** */
+/**
+ * Unicode script names.
+ */
 export namespace UnicodeScript {
     export const Arabic = "Arabic";
     export const Armenian = "Armenian";

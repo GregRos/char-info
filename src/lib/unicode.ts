@@ -1,6 +1,6 @@
 import {lookup} from "./inner/unicode-lookup";
 import {BasicCharClassIndicator, CharClassIndicator} from "./inner/indicators";
-import {UnicodeCategory} from "./inner/defs";
+import {UnicodeCategory} from "./inner/names";
 
 function homogenizeInputStr(str: string) {
     return str.toLowerCase().replace(/[_ -,]/g, "");
@@ -24,7 +24,7 @@ export function uniCategory(category: string): CharClassIndicator {
  * Returns an indicator for characters belonging to a Unicode script, `script`.
  * @param script
  */
-export function uniScript(script: string) {
+export function uniInScript(script: string) {
     script = homogenizeInputStr(script);
     let uGroup = lookup.scripts.get(script);
     return new BasicCharClassIndicator(uGroup);
@@ -34,7 +34,7 @@ export function uniScript(script: string) {
  * Returns an indicator for characters belonging to the Unicode block, `block`.
  * @param block
  */
-export function uniBlock(block: string) {
+export function uniInBlock(block: string) {
     block = homogenizeInputStr(block);
     let uGroup = lookup.blocks.get(block);
     return new BasicCharClassIndicator(uGroup);
@@ -43,32 +43,32 @@ export function uniBlock(block: string) {
 /**
  * Indicator for Unicode decimal digit characters.
  */
-export const uniDecimal = uniCategory(UnicodeCategory.NumberDecimalDigit);
+export const uniIsDecimal = uniCategory(UnicodeCategory.NumberDecimalDigit);
 
 /**
  * Indicator for Unicode letters.
  */
-export const uniLetter = uniCategory(UnicodeCategory.Letter);
+export const uniIsLetter = uniCategory(UnicodeCategory.Letter);
 
 /**
  * Indicator for Unicode lowercase letters.
  */
-export const uniLower = uniCategory(UnicodeCategory.LetterLowercase);
+export const uniIsLower = uniCategory(UnicodeCategory.LetterLowercase);
 
 /**
  * Indicator for Unicode uppercase letters.
  */
-export const uniUpper = uniCategory(UnicodeCategory.LetterUppercase);
+export const uniIsUpper = uniCategory(UnicodeCategory.LetterUppercase);
 
 /**
  * Indicator for Unicode inline spaces.
  */
-export const uniSpace = uniCategory(UnicodeCategory.SeparatorSpace);
+export const uniIsSpace = uniCategory(UnicodeCategory.SeparatorSpace);
 
 /**
  * Indicator for Unicode vertical separators.
  */
-export const uniNewline = uniCategory(UnicodeCategory.Custom_SeparatorVertical);
+export const uniIsNewline = uniCategory(UnicodeCategory.Custom_SeparatorVertical);
 
 /**
  * Returns the Unicode categories for a character or code.
@@ -110,4 +110,4 @@ export {
     UnicodeScript,
     UnicodeCategory,
     UnicodeBlock
-} from "./inner/defs";
+} from "./inner/names";

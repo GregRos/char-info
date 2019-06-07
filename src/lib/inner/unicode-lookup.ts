@@ -17,6 +17,7 @@ export interface UnicodeCharGroup {
     displayName: string;
 }
 
+
 export interface UnicodeLookup {
     allBlocks: DataIntervalTree<UnicodeCharGroup>;
     allCategories: DataIntervalTree<UnicodeCharGroup>;

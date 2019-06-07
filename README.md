@@ -5,36 +5,55 @@
 
 [API Documentation](https://gregros.github.io/char-info/)
 
-A library that gives you information about individual Unicode characters. You can use for stuff like:
+A library that gives you information about individual Unicode characters. It also provides a list of Unicode groupings and their names, including lists of categories, blocks, and scripts. This is also reflected in the library's type definition files. 
+
+You can use for stuff like:
 
 1. Find out what language a character is in, such as Greek (α), Latin (a), Hebrew (א), and so on.
 2. Whether it's a kind of punctuation, digit, letter, emoji, spacing mark, or something else
 3. What Unicode character block it inhabits
 4. If it's upper-case or lower-case
 
-That can be used for sanitizing input, parsing special characters, detecting languages, converting between encodings, etc. The library only supports characters in the BMP. There are no plans to expanding it beyond the BMP.
+The library only supports characters in the BMP. There are no plans to expanding it beyond the BMP. 
 
-It's bundled with some basic Unicode information that originally came from the Unicode Character Database, so it's kind of heavy even though it's API is small. The information is processed into a tree-like data structure that's used to lookup characters. The package can also be used to get info about regular ASCII characters, which circumvents the lookup tree.
+In addition, the library provides basic ASCII character indicator functions, such as `isLetter`, `isUpper`, and so forth. These have really simple implementations and don't have the overhead of the Unicode indicators.
 
-It also provides a list of Unicode groupings and their names, including lists of categories, blocks, and scripts. This is also reflected in the library's type definition files.
+The library comes bundled with Unicode character information tables that originally came from the Unicode Character Database. This data can make bundles with the library being quite heavy. To counteract this, the library is built to leverage "tree shaking" or dead code elimination, which is used in all modern bundlers. Provided you only import the members you'll use, only some of the data will end up in your bundle. For example, if you just import the ASCII character indicators your bundle won't contain any Unicode data at all.
 
-## Usage
-This package has 3 objects for getting information about characters:
+Enabling dead code elimination may require switching to ES2015 native modules. You'll need to look at your bundler's documentation for more information.
 
-1. `CharInfo`, takes strings with length 1 as arguments. Example functions include `CharInfo.isUniLetter`, `CharInfo.inScript`, etc.
+## Imports
+The package has three four paths you can import from:
 
-2. `CodeInfo`, takes numbers (assumed to be character codes) as parameters. Example functions include `CodeInfo.isUniLetter`, `CodeInfo.inScript`, etc.
+1. `char-info/ascii`, which contains indicator functions for ASCII characters and character codes.
+2. `char-info/unicode`, which contain the special Unicode character indicators.
+4. `char-info`, which re-exports everything.
 
-3. `Indicators`, which returns indicator objects that test if a character/code is in a specific Unicode group. You can get one for categories, blocks, and scripts.
+If you're using a properly configured bundler, you can import what you need from `char-info` and still take advantage of tree shaking.
 
-See more in the API documentation.
+## Usage - ASCII indicators
 
-## Examples 
-It's pretty simple to use. Here are some examples testing if letters have certain properties:
+```typescript
+import {isLetter, isUpper, isUpperCode} from "char-info"
 
-	import {CharInfo, CodeInfo, Indicators, UnicodeScript} from 'char-info';
-	let a = CharInfo.isUniLetter("א");
-	let b = CharInfo.inScript("א", UnicodeScript.Hebrew);
-	let indicator = Indicators.script(UnicodeScript.Cyrilic);
-	let c = indicator.test("v");
-	let d = CodeInfo.isUniUpper("A".charCodeAt(0));
+assert.isTrue(isLetter("a"));
+assert.isTrue(isUpper("A"));
+assert.isTrue(isUpperCode("A"));
+
+// You can also do it like this:
+import * as AsciiInfo from "char-info/ascii";
+
+assert.isTrue(AsciiInfo.isLetterCode("a".charCodeAt(0));
+
+```
+
+## Usage - Unicode Indicators
+
+Unicode indicators work a bit differently, and aren't just plain functions. Instead, each indicator has two members, `char` and `code`, for testing characters (in the form of strings) and character codes, respectively.
+
+```typescript
+import {uniIsLetter, uniIsDigit} from "char-info";
+
+assert.isTrue(uniIsLetter.char("א"));
+assert.isTrue(uniIsDigit.char("٩"));
+```

@@ -4,6 +4,16 @@
 export {Interval} from "node-interval-tree";
 
 export {
+    isDigitCode,
+    AsciiCodes,
+    isAsciiCode,
+    isHexCode,
+    isLetterCode,
+    isLowerCode,
+    isNewlineCode,
+    isSpaceCode,
+    isUpperCode,
+    isWordCharCode,
     isWordChar,
     isUpper,
     isSpace,
@@ -11,23 +21,23 @@ export {
     isLower,
     isLetter,
     isHex,
-    isDecimal,
+    isDigit,
     isAscii
-} from "./ascii-chars";
+} from "./ascii";
 
 export {
     uniGetScripts,
-    uniScript,
-    uniLower,
-    uniLetter,
+    uniInScript,
+    uniIsLower,
+    uniIsLetter,
     uniGetCategories,
     uniGetBlock,
     uniCategory,
-    uniNewline,
-    uniBlock,
-    uniDecimal,
-    uniSpace,
-    uniUpper,
+    uniIsNewline,
+    uniInBlock,
+    uniIsDecimal,
+    uniIsSpace,
+    uniIsUpper,
     UnicodeBlock,
     UnicodeCategory,
     UnicodeScript

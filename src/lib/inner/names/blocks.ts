@@ -2,6 +2,9 @@
  * */
 /* tslint:disable:naming-convention */
 
+/**
+ * Unicode block names.
+ */
 export namespace UnicodeBlock {
     export const AlphabeticPresentationForms = "AlphabeticPresentationForms";
     export const Arabic = "Arabic";

@@ -20,8 +20,8 @@ function binarySearchInIntervals(intervals: Interval[]) {
 }
 
 /**
- * An object that can determine if a given codepoint or character is part of
- * some single Unicode group.
+ * Lets you determine if a character or codepoint is part of some Unicode
+ * character grouping.
  */
 export interface CharClassIndicator {
     /**
