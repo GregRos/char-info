@@ -1,5 +1,4 @@
 /**
- * @module char-info/inner
  * @external
  */ /** */
 /* tslint:disable:naming-convention */

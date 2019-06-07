@@ -1,3 +1,12 @@
+/**
+ * Basic ASCII character indicators and character codes.
+ * @module char-info/ascii
+ * @preferred
+ */
+
+/**
+ * Common ASCII character codes.
+ */
 export namespace AsciiCodes {
     export const a = "a".charCodeAt(0);
     export const f = "f".charCodeAt(0);

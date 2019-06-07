@@ -1,3 +1,10 @@
+/**
+ * Unicode character indicators.
+ *
+ * @module char-info/unicode
+ * @module char-info
+ */ /** */
+
 import {lookup} from "./internal/unicode-lookup";
 import {BasicCharClassIndicator} from "./internal/indicators";
 import {UnicodeCategory} from "./internal/names";
@@ -12,7 +19,7 @@ function homogenizeInputStr(str: string) {
  * `category`.
  * @param category The category to test for.
  */
-export function uniCategory(category: string): CharClassIndicator {
+export function uniInCategory(category: string): CharClassIndicator {
     category = homogenizeInputStr(category);
     if (category.length > 3) {
         category = lookup.longCategoryToCode.get(category);
@@ -44,68 +51,68 @@ export function uniInBlock(block: string) {
 /**
  * Indicator for Unicode decimal digit characters.
  */
-export const uniIsDecimal = uniCategory(UnicodeCategory.NumberDecimalDigit);
+export const uniIsDecimal = uniInCategory(UnicodeCategory.NumberDecimalDigit);
 
 /**
  * Indicator for Unicode letters.
  */
-export const uniIsLetter = uniCategory(UnicodeCategory.Letter);
+export const uniIsLetter = uniInCategory(UnicodeCategory.Letter);
 
 /**
  * Indicator for Unicode lowercase letters.
  */
-export const uniIsLower = uniCategory(UnicodeCategory.LetterLowercase);
+export const uniIsLower = uniInCategory(UnicodeCategory.LetterLowercase);
 
 /**
  * Indicator for Unicode uppercase letters.
  */
-export const uniIsUpper = uniCategory(UnicodeCategory.LetterUppercase);
+export const uniIsUpper = uniInCategory(UnicodeCategory.LetterUppercase);
 
 /**
  * Indicator for Unicode inline spaces.
  */
-export const uniIsSpace = uniCategory(UnicodeCategory.SeparatorSpace);
+export const uniIsSpace = uniInCategory(UnicodeCategory.SeparatorSpace);
 
 /**
  * Indicator for Unicode vertical separators.
  */
-export const uniIsNewline = uniCategory(UnicodeCategory.Custom_SeparatorVertical);
+export const uniIsNewline = uniInCategory(UnicodeCategory.Custom_SeparatorVertical);
 
 /**
  * Returns the Unicode categories for a character or code.
  */
 export const uniGetCategories = {
     code(code: number) {
-        return lookup.allCategories.search(code, code);
+        return !!lookup.allCategories.search(code, code);
     },
     char(char: string) {
         return uniGetCategories.code(char.charCodeAt(0));
     }
-};
+} as CharClassIndicator;
 
 /**
  * Returns the Unicode scripts for a character or code.
  */
 export const uniGetScripts = {
     code(code: number) {
-        return lookup.allScripts.search(code, code);
+        return !!lookup.allScripts.search(code, code);
     },
     char(char: string) {
         return uniGetScripts.code(char.charCodeAt(0));
     }
-};
+} as CharClassIndicator;
 
 /**
  * Returns the Unicode block for a character or code.
  */
 export const uniGetBlock = {
     code(code: number) {
-        return lookup.allBlocks.search(code, code)[0];
+        return !!lookup.allBlocks.search(code, code)[0];
     },
     char(char: string) {
         return uniGetBlock.code(char.charCodeAt(0));
     }
-};
+} as CharClassIndicator;
 
 export {
     UnicodeScript,

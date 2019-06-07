@@ -5,7 +5,7 @@ import _ = require("lodash");
 import {CommentPlugin} from "typedoc/dist/lib/converter/plugins";
 
 async function run() {
-    let files = await globby(["./src/lib/**/*.ts", "./src/lib/*.ts"], {
+    let files = await globby(["./src/lib/**/*.ts", "./src/lib/*.ts", "!**/*.ranges.ts"], {
         absolute: true
     });
 

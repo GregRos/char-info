@@ -1,4 +1,8 @@
 /**
+ * @module char-info
+ */
+
+/**
  * Lets you determine if a character or codepoint is part of some Unicode
  * character grouping.
  */

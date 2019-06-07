@@ -1,5 +1,5 @@
 /**
- * @
+ * @external
  */    /** */
 import {UnicodeCharGroup} from "./unicode-lookup";
 import {Interval} from "node-interval-tree";

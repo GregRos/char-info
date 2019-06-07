@@ -1,6 +1,10 @@
 /**
+ * Main module.
+ * Re-exports everything found in `char-info/ascii` and `char-info/unicode`.
+ *
  * @module char-info
- */ /** */
+ * @preferred
+ */ /**  */
 export {Interval} from "node-interval-tree";
 
 export {
@@ -32,7 +36,7 @@ export {
     uniIsLetter,
     uniGetCategories,
     uniGetBlock,
-    uniCategory,
+    uniInCategory,
     uniIsNewline,
     uniInBlock,
     uniIsDecimal,
