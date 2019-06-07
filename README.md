@@ -23,7 +23,7 @@ The library comes bundled with Unicode character information tables that origina
 Enabling dead code elimination may require switching to ES2015 native modules. You'll need to look at your bundler's documentation for more information.
 
 ## Imports
-The package has three four paths you can import from:
+The package has three 	paths you can import from:
 
 1. `char-info/ascii`, which contains indicator functions for ASCII characters and character codes.
 2. `char-info/unicode`, which contain the special Unicode character indicators.

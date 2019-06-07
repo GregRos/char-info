@@ -1,4 +1,8 @@
-
+/**
+ * @module aaa
+ * @external f
+ * @private
+ */ /** */
 export default [
     [
         "AlphabeticPresentationForms",
