@@ -1,4 +1,4 @@
-import {UnicodeScript} from "../../lib/inner/names";
+import {UnicodeScript} from "../../lib/internal/names";
 import {
     uniIsDecimal, uniGetScripts,
     uniIsLetter,

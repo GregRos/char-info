@@ -43,4 +43,4 @@ export {
     UnicodeScript
 } from "./unicode";
 
-export {CharClassIndicator} from "./inner/indicators";
+export {CharClassIndicator} from "./internal/indicator-type";
