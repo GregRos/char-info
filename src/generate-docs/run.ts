@@ -1,7 +1,7 @@
 import {Application, ReflectionFlag} from "typedoc";
 import globby from "globby";
 import {exec} from "shelljs";
-import _ = require("lodash");
+
 import {CommentPlugin} from "typedoc/dist/lib/converter/plugins";
 
 async function run() {
