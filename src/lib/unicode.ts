@@ -2,7 +2,6 @@
  * Unicode character indicators.
  *
  * @module char-info/unicode
- * @module char-info
  */ /** */
 
 import {lookup} from "./internal/unicode-lookup";
@@ -83,36 +82,36 @@ export const uniIsNewline = uniInCategory(UnicodeCategory.Custom_SeparatorVertic
  */
 export const uniGetCategories = {
     code(code: number) {
-        return !!lookup.allCategories.search(code, code);
+        return lookup.allCategories.search(code, code);
     },
     char(char: string) {
         return uniGetCategories.code(char.charCodeAt(0));
     }
-} as CharClassIndicator;
+};
 
 /**
  * Returns the Unicode scripts for a character or code.
  */
 export const uniGetScripts = {
     code(code: number) {
-        return !!lookup.allScripts.search(code, code);
+        return lookup.allScripts.search(code, code);
     },
     char(char: string) {
         return uniGetScripts.code(char.charCodeAt(0));
     }
-} as CharClassIndicator;
+};
 
 /**
  * Returns the Unicode block for a character or code.
  */
 export const uniGetBlock = {
     code(code: number) {
-        return !!lookup.allBlocks.search(code, code)[0];
+        return lookup.allBlocks.search(code, code)[0];
     },
     char(char: string) {
         return uniGetBlock.code(char.charCodeAt(0));
     }
-} as CharClassIndicator;
+};
 
 export {
     UnicodeScript,

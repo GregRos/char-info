@@ -19,3 +19,10 @@ export interface CharClassIndicator {
      */
     char(str: string): boolean;
 }
+
+/**
+ * Provides information about
+ */
+export interface CharInfoProvider {
+
+}
