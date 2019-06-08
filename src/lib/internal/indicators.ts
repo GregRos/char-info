@@ -31,6 +31,8 @@ export class BasicCharClassIndicator implements CharClassIndicator {
     constructor(private _group: UnicodeCharGroup) {
         let intervals = _group.intervals;
         this._binarySearchInIntervals = binarySearchInIntervals(intervals);
+        this.char = this.char.bind(this);
+        this.code = this.code.bind(this);
     }
 
     code(char: number) {

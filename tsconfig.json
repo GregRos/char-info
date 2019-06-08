@@ -13,7 +13,8 @@
     ],
     "declaration": true,
     "outDir": "dist",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "strictBindCallApply": true
   },
   "include": [
     "src/**/*.ts"
