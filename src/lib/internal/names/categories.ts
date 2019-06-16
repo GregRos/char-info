@@ -1,4 +1,4 @@
-/** @external
+/** @module char-info/unicode
  * */
 /* tslint:disable:naming-convention */
 /**

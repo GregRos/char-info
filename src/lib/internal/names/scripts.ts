@@ -1,4 +1,4 @@
-/** @external
+/** @module char-info/unicode
  * */
 /**
  * Unicode script names.
