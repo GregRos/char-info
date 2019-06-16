@@ -3,7 +3,7 @@
 [![Codecov](https://codecov.io/gh/GregRos/char-info/branch/master/graph/badge.svg)](https://codecov.io/gh/GregRos/char-info/branch/master)
 [![NPM](https://badge.fury.io/js/char-info.svg)](https://www.npmjs.com/package/char-info)
 
-[API Documentation](https://gregros.github.io/char-info/)
+[API Documentation](https://char-info.netlify.com/)
 
 A library that gives you information about individual Unicode characters. It also provides a list of Unicode groupings and their names, including lists of categories, blocks, and scripts. This is also reflected in the library's type definition files. 
 
