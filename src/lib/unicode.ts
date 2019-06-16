@@ -2,6 +2,7 @@
  * Unicode character indicators.
  *
  * @module char-info/unicode
+ * @preferred
  */ /** */
 
 import {lookup} from "./internal/unicode-lookup";
