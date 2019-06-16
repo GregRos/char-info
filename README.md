@@ -1,7 +1,7 @@
 # char-info
-![Travic CI](https://travis-ci.org/GregRos/char-info.svg?branch=master)
-![Codecov](https://codecov.io/gh/GregRos/char-info/branch/master/graph/badge.svg)
-![NPM](https://badge.fury.io/js/char-info.svg)
+[![Travic CI](https://travis-ci.org/GregRos/char-info.svg?branch=master)](https://travis-ci.org/GregRos/char-info)
+[![Codecov](https://codecov.io/gh/GregRos/char-info/branch/master/graph/badge.svg)](https://codecov.io/gh/GregRos/char-info/branch/master)
+[![NPM](https://badge.fury.io/js/char-info.svg)](https://www.npmjs.com/package/char-info)
 
 [API Documentation](https://gregros.github.io/char-info/)
 
