@@ -7,7 +7,7 @@
   "description": "Unicode character information library. For both server-side and client-side use.",
   "main": "index.js",
   "scripts": {
-    "test": "node ./dist/test/jrunner.js",
+    "test": "node_modules/ava/cli.js --files='dist/test/unit/**/*.js' --verbose",
     "cover": "npm-run istanbul cover ./dist/test/jrunner.js",
     "build": "rm -rf dist && tsc",
     "gen-docs": "node ./dist/generate-docs/run.js"
@@ -33,12 +33,11 @@
   },
   "devDependencies": {
     "@types/globby": "^9.1.0",
-    "@types/jasmine": "^2.5.37",
     "@types/shelljs": "^0.8.5",
+    "ava": "^2.1.0",
     "codecov": "^2.1.0",
     "globby": "^9.2.0",
     "istanbul": "^0.4.5",
-    "jasmine": "^2.5.2",
     "jasmine-spec-reporter": "^2.7.0",
     "lodash": "^4.17.4",
     "retarget-sourcemaps-after-move": "0.1.1",
@@ -52,5 +51,10 @@
     "typescript": "^3.5.1"
   },
   "optionalDependencies": {},
-  "module": "_es2015/index.js"
+  "module": "_es2015/index.js",
+  "ava": {
+    "files": [
+      "dist/test/unit/**/*.js"
+    ]
+  }
 }

@@ -48,7 +48,7 @@ export function isDigitCode(code: number, base = 10) {
     if (baseDif <= 0) {
         return code >= AsciiCodes.zero && code <= AsciiCodes.nine + baseDif;
     } else {
-        return (code >= AsciiCodes.zero && code <= AsciiCodes.nine || code >= AsciiCodes.a) || (code >= AsciiCodes.a && code < AsciiCodes.a + baseDif);
+        return (code >= AsciiCodes.zero && code <= AsciiCodes.nine) || (code >= AsciiCodes.a && code < AsciiCodes.a + baseDif);
     }
 }
 

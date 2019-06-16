@@ -7,7 +7,9 @@ import {CharClassIndicator} from "./indicator-type";
 
 function binarySearchInIntervals(intervals: Interval[]) {
     return function bin(start: number, end: number, char: number) {
-        if (start > end) return false;
+        if (start > end) {
+            return false
+        }
         let mid = (start + end) >> 1;
         let midInterval = intervals[mid];
         if (midInterval.low > char) {
@@ -41,6 +43,7 @@ export class BasicCharClassIndicator implements CharClassIndicator {
     }
 
     char(char: string) {
+        if (char == "") return false;
         let intervals = this._group.intervals;
         return this.code(char.codePointAt(0));
     }
