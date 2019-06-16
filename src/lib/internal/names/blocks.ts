@@ -30,7 +30,7 @@ export namespace UnicodeBlock {
     export const CJKCompatibilityIdeographs = "CJKCompatibilityIdeographs";
     export const CJKRadicalsSupplement = "CJKRadicalsSupplement";
     export const CJKStrokes = "CJKStrokes";
-    export const CJKSymbolsandPunctuation = "CJKSymbolsandPunctuation";
+    export const CJKSymbolsAndPunctuation = "CJKSymbolsandPunctuation";
     export const CJKUnifiedIdeographs = "CJKUnifiedIdeographs";
     export const CJKUnifiedIdeographsExtensionA = "CJKUnifiedIdeographsExtensionA";
     export const Cham = "Cham";
@@ -54,7 +54,7 @@ export namespace UnicodeBlock {
     export const DevanagariExtended = "DevanagariExtended";
     export const Dingbats = "Dingbats";
     export const EnclosedAlphanumerics = "EnclosedAlphanumerics";
-    export const EnclosedCJKLettersandMonths = "EnclosedCJKLettersandMonths";
+    export const EnclosedCJKLettersAndMonths = "EnclosedCJKLettersandMonths";
     export const Ethiopic = "Ethiopic";
     export const EthiopicExtended = "EthiopicExtended";
     export const EthiopicExtendedA = "EthiopicExtendedA";
@@ -65,10 +65,10 @@ export namespace UnicodeBlock {
     export const GeorgianSupplement = "GeorgianSupplement";
     export const Glagolitic = "Glagolitic";
     export const GreekExtended = "GreekExtended";
-    export const GreekandCoptic = "GreekandCoptic";
+    export const GreekAndCoptic = "GreekandCoptic";
     export const Gujarati = "Gujarati";
     export const Gurmukhi = "Gurmukhi";
-    export const HalfwidthandFullwidthForms = "HalfwidthandFullwidthForms";
+    export const HalfwidthAndFullwidthForms = "HalfwidthandFullwidthForms";
     export const HangulCompatibilityJamo = "HangulCompatibilityJamo";
     export const HangulJamo = "HangulJamo";
     export const HangulJamoExtendedA = "HangulJamoExtendedA";
@@ -104,14 +104,14 @@ export namespace UnicodeBlock {
     export const Lisu = "Lisu";
     export const LowSurrogates = "LowSurrogates";
     export const Malayalam = "Malayalam";
-    export const Mandaic = "Mandaic";
+    export const MAndaic = "Mandaic";
     export const MathematicalOperators = "MathematicalOperators";
     export const MeeteiMayek = "MeeteiMayek";
     export const MeeteiMayekExtensions = "MeeteiMayekExtensions";
     export const MiscellaneousMathematicalSymbolsA = "MiscellaneousMathematicalSymbolsA";
     export const MiscellaneousMathematicalSymbolsB = "MiscellaneousMathematicalSymbolsB";
     export const MiscellaneousSymbols = "MiscellaneousSymbols";
-    export const MiscellaneousSymbolsandArrows = "MiscellaneousSymbolsandArrows";
+    export const MiscellaneousSymbolsAndArrows = "MiscellaneousSymbolsandArrows";
     export const MiscellaneousTechnical = "MiscellaneousTechnical";
     export const ModifierToneLetters = "ModifierToneLetters";
     export const Mongolian = "Mongolian";
@@ -139,7 +139,7 @@ export namespace UnicodeBlock {
     export const Specials = "Specials";
     export const Sundanese = "Sundanese";
     export const SundaneseSupplement = "SundaneseSupplement";
-    export const SuperscriptsandSubscripts = "SuperscriptsandSubscripts";
+    export const SuperscriptsAndSubscripts = "SuperscriptsandSubscripts";
     export const SupplementalArrowsA = "SupplementalArrowsA";
     export const SupplementalArrowsB = "SupplementalArrowsB";
     export const SupplementalMathematicalOperators = "SupplementalMathematicalOperators";
