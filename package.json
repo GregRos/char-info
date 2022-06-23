@@ -33,7 +33,7 @@
     "@types/globby": "^9.1.0",
     "@types/shelljs": "^0.8.5",
     "ava": "^2.1.0",
-    "codecov": "^2.1.0",
+    "codecov": "^3.8.3",
     "globby": "^9.2.0",
     "jasmine-spec-reporter": "^2.7.0",
     "lodash": "^4.17.4",
